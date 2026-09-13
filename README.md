@@ -43,6 +43,17 @@ ci/                   Conformance test runner and CI scripts
 
 ## Quickstart
 
+On a fresh clone, prepare both language ecosystems first (the relay and the
+Python verifier are standard-library only; `cryptography` powers an independent
+Ed25519 signer cross-check in the nesting-depth test — falling back to the
+in-tree signer if absent — and the TypeScript verifier needs its
+`node_modules`):
+
+```bash
+pip install cryptography
+npm ci --prefix implementations/typescript
+```
+
 ### 1. Run the Conformance & Interoperability Test Suites
 
 ```bash
