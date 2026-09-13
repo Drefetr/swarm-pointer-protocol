@@ -3,20 +3,21 @@
 
 Runs the gates that must pass before ``v = 1`` can be frozen:
 
-    1. generated-vector drift      committed suite.json == generator output
-    2. Python conformance          committed suite.json, independently
-    3. TypeScript conformance      committed suite.json, independently
-    4. differential suite          Python vs TypeScript on suite.json
-    5. JCS number tests            dedicated number path, both impls
-    6. permanent regressions       exact-byte hostile-review fixtures
-    7. property-name hostility     Object.prototype-hostile member names
-    8. nesting-depth totality      paired depth sweep to the 1 MiB boundary
-    9. differential mutation       corpus classified by target subfunction
-   10. binary64 fuzz               random + biased corpus, independent oracle
-   11. relay interoperability      both relays over the HTTP profile
-   12. durable relay               SQLite §27/§28 relay persistence
-   13. durable two-agent e2e       cross-language pointer exchange + cold restart
-   14. multi-relay federation e2e  two relays, client union, GET/POST federation
+    1. frozen package identity     spec + suite bytes match the pinned digests
+    2. generated-vector drift      committed suite.json == generator output
+    3. Python conformance          committed suite.json, independently
+    4. TypeScript conformance      committed suite.json, independently
+    5. differential suite          Python vs TypeScript on suite.json
+    6. JCS number tests            dedicated number path, both impls
+    7. permanent regressions       exact-byte hostile-review fixtures
+    8. property-name hostility     Object.prototype-hostile member names
+    9. nesting-depth totality      paired depth sweep to the 1 MiB boundary
+   10. differential mutation       corpus classified by target subfunction
+   11. binary64 fuzz               random + biased corpus, independent oracle
+   12. relay interoperability      both relays over the HTTP profile
+   13. durable relay               SQLite §27/§28 relay persistence
+   14. durable two-agent e2e       cross-language pointer exchange + cold restart
+   15. multi-relay federation e2e  two relays, client union, GET/POST federation
 
 Implementations only ever consume the committed ``tests/conformance/vectors/suite.json``.
 They never regenerate expected results at test time.
@@ -59,6 +60,8 @@ def main() -> int:
 
     py = sys.executable
     steps: list[tuple[str, list[str], Path]] = [
+        ("frozen package identity",
+         [py, str(ROOT / "ci" / "package_frozen.py"), "--check"], ROOT),
         ("generated-vector drift",
          [py, str(ROOT / "tests" / "conformance" / "build_suite.py"), "--check"], ROOT),
         ("Python conformance",

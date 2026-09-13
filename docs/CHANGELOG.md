@@ -17,6 +17,11 @@ protocol maxima require a new assertion version (`v = 2`).
   `max_locator_bytes`, `max_parents`) and enforces them as local policy,
   clamped to the v1 maxima. Exceeding a locally advertised limit is a `403`
   policy rejection, not a protocol-invalidity claim.
+- `ci/package_frozen.py` and `docs/releases/spp-v1-frozen.md` — reproducible
+  `spp-v1-frozen` release package (spec-layout archive, pinned digests,
+  deterministic zip).
+- `frozen package identity` conformance gate: the spec and suite bytes must
+  match the pinned release digests or the run fails.
 
 ### Fixed
 
@@ -28,6 +33,9 @@ protocol maxima require a new assertion version (`v = 2`).
   durable two-agent e2e, and multi-relay federation e2e tests active in CI.
 - `ci/README.md` gate table now lists every conformance gate.
 - Stale `spec/*` references in the `implementations/` READMEs.
+- `.gitattributes` normalizes text to LF so frozen-package SHA-256 digests are
+  identical on every platform; the review addendum recorded the suite digest
+  over CRLF bytes, and the canonical suite digest is now `649a58da…`.
 
 ### Documentation
 

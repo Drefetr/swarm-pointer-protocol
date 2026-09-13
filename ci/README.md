@@ -12,6 +12,7 @@ Gates:
 
 | Gate | Command | Freeze meaning |
 | --- | --- | --- |
+| frozen package identity | `ci/package_frozen.py --check` | spec and suite bytes match the pinned release digests |
 | generated-vector drift | `tests/conformance/build_suite.py --check` | committed `suite.json` is provably the generator output |
 | Python conformance | `implementations/python/spp_verify.py --suite` | Python implementation consumes committed artifact |
 | TypeScript conformance | `implementations/typescript/src/cli.ts --suite` | TypeScript implementation consumes committed artifact |
@@ -31,3 +32,6 @@ Gates:
 Implementations never regenerate expected results. They read
 `tests/conformance/vectors/suite.json` and `tests/conformance/regressions/*.json` as fixed
 byte strings.
+
+`package_frozen.py` also assembles the immutable release package in the layout
+the frozen specification names; see `docs/releases/spp-v1-frozen.md`.
