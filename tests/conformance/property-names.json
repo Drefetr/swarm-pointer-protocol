@@ -1,0 +1,16 @@
+{
+  "comment": "Property names inherited from Object.prototype, or otherwise hostile to prototype-chain-sensitive object operations. Used by conformance/test_property_names.py.",
+  "names": [
+    "__proto__",
+    "constructor",
+    "prototype",
+    "toString",
+    "valueOf",
+    "hasOwnProperty",
+    "isPrototypeOf",
+    "propertyIsEnumerable",
+    "__defineGetter__",
+    "__defineSetter__",
+    "toLocaleString"
+  ]
+}

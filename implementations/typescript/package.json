@@ -1,0 +1,18 @@
+{
+  "name": "spp-impl-b",
+  "private": true,
+  "type": "module",
+  "description": "Independent TypeScript SPP v1-rc1 verifier. Do not import impl-a or tools/.",
+  "scripts": {
+    "verify": "tsx src/cli.ts"
+  },
+  "dependencies": {
+    "@noble/curves": "^1.9.7",
+    "@noble/hashes": "^1.8.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.43",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
+  }
+}

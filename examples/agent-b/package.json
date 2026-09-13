@@ -1,0 +1,6 @@
+{
+  "name": "spp-agent-b",
+  "private": true,
+  "type": "module",
+  "description": "SPP v1 demo actor — Agent B (TypeScript). Independent of Agent A."
+}

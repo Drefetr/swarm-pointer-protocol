@@ -1,0 +1,2310 @@
+[
+  {
+    "name": "clean",
+    "target": "full-assertion",
+    "expected": null,
+    "impl_a": {
+      "status": "VALID",
+      "id": "sha256:000018da6b416f566189390610b73b34b6d109265842a1988b3d41301490c6ae",
+      "units": 3,
+      "target_hex": "0000555555555555555555555555555555555555555555555555555555555555",
+      "name": "clean"
+    },
+    "impl_b": {
+      "status": "VALID",
+      "id": "sha256:000018da6b416f566189390610b73b34b6d109265842a1988b3d41301490c6ae",
+      "units": 3,
+      "target_hex": "0000555555555555555555555555555555555555555555555555555555555555",
+      "name": "clean"
+    },
+    "stage_matches_target": null
+  },
+  {
+    "name": "ws-pretty",
+    "target": "full-assertion",
+    "expected": null,
+    "impl_a": {
+      "status": "VALID",
+      "id": "sha256:000018da6b416f566189390610b73b34b6d109265842a1988b3d41301490c6ae",
+      "units": 3,
+      "target_hex": "0000555555555555555555555555555555555555555555555555555555555555",
+      "name": "ws-pretty"
+    },
+    "impl_b": {
+      "status": "VALID",
+      "id": "sha256:000018da6b416f566189390610b73b34b6d109265842a1988b3d41301490c6ae",
+      "units": 3,
+      "target_hex": "0000555555555555555555555555555555555555555555555555555555555555",
+      "name": "ws-pretty"
+    },
+    "stage_matches_target": null
+  },
+  {
+    "name": "trailing-nl",
+    "target": "full-assertion",
+    "expected": null,
+    "impl_a": {
+      "status": "VALID",
+      "id": "sha256:000018da6b416f566189390610b73b34b6d109265842a1988b3d41301490c6ae",
+      "units": 3,
+      "target_hex": "0000555555555555555555555555555555555555555555555555555555555555",
+      "name": "trailing-nl"
+    },
+    "impl_b": {
+      "status": "VALID",
+      "id": "sha256:000018da6b416f566189390610b73b34b6d109265842a1988b3d41301490c6ae",
+      "units": 3,
+      "target_hex": "0000555555555555555555555555555555555555555555555555555555555555",
+      "name": "trailing-nl"
+    },
+    "stage_matches_target": null
+  },
+  {
+    "name": "trailing-junk",
+    "target": "json-input",
+    "expected": null,
+    "impl_a": {
+      "status": "VALID",
+      "id": "sha256:000018da6b416f566189390610b73b34b6d109265842a1988b3d41301490c6ae",
+      "units": 3,
+      "target_hex": "0000555555555555555555555555555555555555555555555555555555555555",
+      "name": "trailing-junk"
+    },
+    "impl_b": {
+      "status": "VALID",
+      "id": "sha256:000018da6b416f566189390610b73b34b6d109265842a1988b3d41301490c6ae",
+      "units": 3,
+      "target_hex": "0000555555555555555555555555555555555555555555555555555555555555",
+      "name": "trailing-junk"
+    },
+    "stage_matches_target": null
+  },
+  {
+    "name": "dup-v",
+    "target": "json-input",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "duplicate-member-name",
+      "name": "dup-v"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "duplicate-member-name",
+      "name": "dup-v"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "dup-nested",
+    "target": "json-input",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "duplicate-member-name",
+      "name": "dup-nested"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "duplicate-member-name",
+      "name": "dup-nested"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "dup-empty-key",
+    "target": "json-input",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "duplicate-member-name",
+      "name": "dup-empty-key"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "duplicate-member-name",
+      "name": "dup-empty-key"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "dup-ref-hash",
+    "target": "json-input",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "duplicate-member-name",
+      "name": "dup-ref-hash"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "duplicate-member-name",
+      "name": "dup-ref-hash"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "v-1.0",
+    "target": "version",
+    "expected": null,
+    "impl_a": {
+      "status": "VALID",
+      "id": "sha256:000018da6b416f566189390610b73b34b6d109265842a1988b3d41301490c6ae",
+      "units": 3,
+      "target_hex": "0000555555555555555555555555555555555555555555555555555555555555",
+      "name": "v-1.0"
+    },
+    "impl_b": {
+      "status": "VALID",
+      "id": "sha256:000018da6b416f566189390610b73b34b6d109265842a1988b3d41301490c6ae",
+      "units": 3,
+      "target_hex": "0000555555555555555555555555555555555555555555555555555555555555",
+      "name": "v-1.0"
+    },
+    "stage_matches_target": null
+  },
+  {
+    "name": "v-1e0",
+    "target": "version",
+    "expected": null,
+    "impl_a": {
+      "status": "VALID",
+      "id": "sha256:000018da6b416f566189390610b73b34b6d109265842a1988b3d41301490c6ae",
+      "units": 3,
+      "target_hex": "0000555555555555555555555555555555555555555555555555555555555555",
+      "name": "v-1e0"
+    },
+    "impl_b": {
+      "status": "VALID",
+      "id": "sha256:000018da6b416f566189390610b73b34b6d109265842a1988b3d41301490c6ae",
+      "units": 3,
+      "target_hex": "0000555555555555555555555555555555555555555555555555555555555555",
+      "name": "v-1e0"
+    },
+    "stage_matches_target": null
+  },
+  {
+    "name": "v-1E0",
+    "target": "version",
+    "expected": null,
+    "impl_a": {
+      "status": "VALID",
+      "id": "sha256:000018da6b416f566189390610b73b34b6d109265842a1988b3d41301490c6ae",
+      "units": 3,
+      "target_hex": "0000555555555555555555555555555555555555555555555555555555555555",
+      "name": "v-1E0"
+    },
+    "impl_b": {
+      "status": "VALID",
+      "id": "sha256:000018da6b416f566189390610b73b34b6d109265842a1988b3d41301490c6ae",
+      "units": 3,
+      "target_hex": "0000555555555555555555555555555555555555555555555555555555555555",
+      "name": "v-1E0"
+    },
+    "stage_matches_target": null
+  },
+  {
+    "name": "v-round",
+    "target": "version",
+    "expected": null,
+    "impl_a": {
+      "status": "VALID",
+      "id": "sha256:000018da6b416f566189390610b73b34b6d109265842a1988b3d41301490c6ae",
+      "units": 3,
+      "target_hex": "0000555555555555555555555555555555555555555555555555555555555555",
+      "name": "v-round"
+    },
+    "impl_b": {
+      "status": "VALID",
+      "id": "sha256:000018da6b416f566189390610b73b34b6d109265842a1988b3d41301490c6ae",
+      "units": 3,
+      "target_hex": "0000555555555555555555555555555555555555555555555555555555555555",
+      "name": "v-round"
+    },
+    "stage_matches_target": null
+  },
+  {
+    "name": "v-next",
+    "target": "version",
+    "expected": null,
+    "impl_a": {
+      "status": "UNSUPPORTED",
+      "stage": "version",
+      "reason": "unknown-v",
+      "name": "v-next"
+    },
+    "impl_b": {
+      "status": "UNSUPPORTED",
+      "stage": "version",
+      "reason": "unknown-v",
+      "name": "v-next"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "v-2",
+    "target": "version",
+    "expected": null,
+    "impl_a": {
+      "status": "UNSUPPORTED",
+      "stage": "version",
+      "reason": "unknown-v",
+      "name": "v-2"
+    },
+    "impl_b": {
+      "status": "UNSUPPORTED",
+      "stage": "version",
+      "reason": "unknown-v",
+      "name": "v-2"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "v-0",
+    "target": "version",
+    "expected": null,
+    "impl_a": {
+      "status": "UNSUPPORTED",
+      "stage": "version",
+      "reason": "unknown-v",
+      "name": "v-0"
+    },
+    "impl_b": {
+      "status": "UNSUPPORTED",
+      "stage": "version",
+      "reason": "unknown-v",
+      "name": "v-0"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "v-1.5",
+    "target": "version",
+    "expected": null,
+    "impl_a": {
+      "status": "UNSUPPORTED",
+      "stage": "version",
+      "reason": "unknown-v",
+      "name": "v-1.5"
+    },
+    "impl_b": {
+      "status": "UNSUPPORTED",
+      "stage": "version",
+      "reason": "unknown-v",
+      "name": "v-1.5"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "v-string",
+    "target": "version",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "v-string"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "v-string"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "v-true",
+    "target": "version",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "v-true"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "v-true"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "created-neg",
+    "target": "numeric-core",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "created",
+      "reason": "created",
+      "name": "created-neg"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "created",
+      "reason": "created",
+      "name": "created-neg"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "created-hi",
+    "target": "numeric-core",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "created",
+      "reason": "created",
+      "name": "created-hi"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "created",
+      "reason": "created",
+      "name": "created-hi"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "created-max",
+    "target": "numeric-core",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "identity",
+      "reason": "id-mismatch",
+      "name": "created-max"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "identity",
+      "reason": "id-mismatch",
+      "name": "created-max"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "created-zero",
+    "target": "numeric-core",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "identity",
+      "reason": "id-mismatch",
+      "name": "created-zero"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "identity",
+      "reason": "id-mismatch",
+      "name": "created-zero"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "created-frac-round",
+    "target": "numeric-core",
+    "expected": null,
+    "impl_a": {
+      "status": "VALID",
+      "id": "sha256:000018da6b416f566189390610b73b34b6d109265842a1988b3d41301490c6ae",
+      "units": 3,
+      "target_hex": "0000555555555555555555555555555555555555555555555555555555555555",
+      "name": "created-frac-round"
+    },
+    "impl_b": {
+      "status": "VALID",
+      "id": "sha256:000018da6b416f566189390610b73b34b6d109265842a1988b3d41301490c6ae",
+      "units": 3,
+      "target_hex": "0000555555555555555555555555555555555555555555555555555555555555",
+      "name": "created-frac-round"
+    },
+    "stage_matches_target": null
+  },
+  {
+    "name": "created-1e20",
+    "target": "numeric-core",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "created",
+      "reason": "created",
+      "name": "created-1e20"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "created",
+      "reason": "created",
+      "name": "created-1e20"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "negzero",
+    "target": "json-input",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "negative-zero",
+      "name": "negzero"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "negative-zero",
+      "name": "negzero"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "negzero-frac",
+    "target": "json-input",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "negative-zero",
+      "name": "negzero-frac"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "negative-zero",
+      "name": "negzero-frac"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "negzero-exp",
+    "target": "json-input",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "negative-zero",
+      "name": "negzero-exp"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "negative-zero",
+      "name": "negzero-exp"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "negzero-underflow",
+    "target": "json-input",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "negative-zero",
+      "name": "negzero-underflow"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "negative-zero",
+      "name": "negzero-underflow"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "pos-underflow",
+    "target": "full-assertion",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "pos-underflow"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "pos-underflow"
+    },
+    "stage_matches_target": null
+  },
+  {
+    "name": "overflow-inf",
+    "target": "json-input",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "non-finite-number",
+      "name": "overflow-inf"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "non-finite-number",
+      "name": "overflow-inf"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "nonce-lead",
+    "target": "schema",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "nonce",
+      "reason": "nonce",
+      "name": "nonce-lead"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "nonce",
+      "reason": "nonce",
+      "name": "nonce-lead"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "nonce-00",
+    "target": "schema",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "nonce",
+      "reason": "nonce",
+      "name": "nonce-00"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "nonce",
+      "reason": "nonce",
+      "name": "nonce-00"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "nonce-empty",
+    "target": "schema",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "nonce",
+      "reason": "nonce",
+      "name": "nonce-empty"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "nonce",
+      "reason": "nonce",
+      "name": "nonce-empty"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "nonce-2e64",
+    "target": "schema",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "nonce",
+      "reason": "nonce",
+      "name": "nonce-2e64"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "nonce",
+      "reason": "nonce",
+      "name": "nonce-2e64"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "nonce-max",
+    "target": "schema",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "identity",
+      "reason": "id-mismatch",
+      "name": "nonce-max"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "identity",
+      "reason": "id-mismatch",
+      "name": "nonce-max"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "nonce-0",
+    "target": "schema",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "identity",
+      "reason": "id-mismatch",
+      "name": "nonce-0"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "identity",
+      "reason": "id-mismatch",
+      "name": "nonce-0"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "nonce-number",
+    "target": "schema",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "nonce",
+      "reason": "nonce",
+      "name": "nonce-number"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "nonce",
+      "reason": "nonce",
+      "name": "nonce-number"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "upper-hex",
+    "target": "identifier",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "identifier",
+      "reason": "identifier",
+      "name": "upper-hex"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "identifier",
+      "reason": "identifier",
+      "name": "upper-hex"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "short-id",
+    "target": "identifier",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "identifier",
+      "reason": "identifier",
+      "name": "short-id"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "identifier",
+      "reason": "identifier",
+      "name": "short-id"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "actor-upper",
+    "target": "identifier",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "identifier",
+      "reason": "identifier",
+      "name": "actor-upper"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "identifier",
+      "reason": "identifier",
+      "name": "actor-upper"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "parents-str",
+    "target": "schema",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "parents-str"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "parents-str"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "parents-null",
+    "target": "schema",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "parents-null"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "parents-null"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "parents-empty",
+    "target": "full-assertion",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "identity",
+      "reason": "id-mismatch",
+      "name": "parents-empty"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "identity",
+      "reason": "id-mismatch",
+      "name": "parents-empty"
+    },
+    "stage_matches_target": null
+  },
+  {
+    "name": "unknown-top",
+    "target": "schema",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "unknown-top"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "unknown-top"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "pointer+desc",
+    "target": "schema",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "pointer+desc"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "pointer+desc"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "ref-foo",
+    "target": "schema",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "ref-foo"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "ref-foo"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "ref-null",
+    "target": "schema",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "ref-null"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "ref-null"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "locators-null",
+    "target": "schema",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "locators-null"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "locators-null"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "locator-8193",
+    "target": "schema",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "length",
+      "reason": "locator-too-long",
+      "name": "locator-8193"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "length",
+      "reason": "locator-too-long",
+      "name": "locator-8193"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "locator-8192",
+    "target": "full-assertion",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "identity",
+      "reason": "id-mismatch",
+      "name": "locator-8192"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "identity",
+      "reason": "id-mismatch",
+      "name": "locator-8192"
+    },
+    "stage_matches_target": null
+  },
+  {
+    "name": "surrogate",
+    "target": "json-input",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "lone-surrogate",
+      "name": "surrogate"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "lone-surrogate",
+      "name": "surrogate"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "trail-surrogate",
+    "target": "json-input",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "lone-surrogate",
+      "name": "trail-surrogate"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "lone-surrogate",
+      "name": "trail-surrogate"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "pair-surrogate",
+    "target": "full-assertion",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "pair-surrogate"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "pair-surrogate"
+    },
+    "stage_matches_target": null
+  },
+  {
+    "name": "nonchar",
+    "target": "json-input",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "noncharacter",
+      "name": "nonchar"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "noncharacter",
+      "name": "nonchar"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "nonchar-fffe",
+    "target": "json-input",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "noncharacter",
+      "name": "nonchar-fffe"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "noncharacter",
+      "name": "nonchar-fffe"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "nonchar-10ffff",
+    "target": "json-input",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "noncharacter",
+      "name": "nonchar-10ffff"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "noncharacter",
+      "name": "nonchar-10ffff"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "nonchar-key",
+    "target": "json-input",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "noncharacter",
+      "name": "nonchar-key"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "noncharacter",
+      "name": "nonchar-key"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "literal-nonchar",
+    "target": "json-input",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "noncharacter",
+      "name": "literal-nonchar"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "noncharacter",
+      "name": "literal-nonchar"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "zero-sig",
+    "target": "signature",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "signature",
+      "reason": "signature",
+      "name": "zero-sig"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "signature",
+      "reason": "signature",
+      "name": "zero-sig"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "short-sig",
+    "target": "signature",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "signature",
+      "reason": "signature",
+      "name": "short-sig"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "signature",
+      "reason": "signature",
+      "name": "short-sig"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "sig-upper",
+    "target": "signature",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "signature",
+      "reason": "signature",
+      "name": "sig-upper"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "signature",
+      "reason": "signature",
+      "name": "sig-upper"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "id-mismatch",
+    "target": "identity",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "identity",
+      "reason": "id-mismatch",
+      "name": "id-mismatch"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "identity",
+      "reason": "id-mismatch",
+      "name": "id-mismatch"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "missing-id",
+    "target": "identifier",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "identifier",
+      "reason": "missing-id",
+      "name": "missing-id"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "identifier",
+      "reason": "missing-id",
+      "name": "missing-id"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "missing-sig",
+    "target": "signature",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "signature",
+      "reason": "signature",
+      "name": "missing-sig"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "signature",
+      "reason": "signature",
+      "name": "missing-sig"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "array-top",
+    "target": "json-input",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "not-object",
+      "name": "array-top"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "not-object",
+      "name": "array-top"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "null-top",
+    "target": "json-input",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "not-object",
+      "name": "null-top"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "not-object",
+      "name": "null-top"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "empty",
+    "target": "json-input",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "invalid-json",
+      "name": "empty"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "invalid-json",
+      "name": "empty"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "bom",
+    "target": "json-input",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "invalid-json",
+      "name": "bom"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "invalid-json",
+      "name": "bom"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "comments",
+    "target": "json-input",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "invalid-json",
+      "name": "comments"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "invalid-json",
+      "name": "comments"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "trailing-comma",
+    "target": "json-input",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "invalid-json",
+      "name": "trailing-comma"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "invalid-json",
+      "name": "trailing-comma"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "single-quotes",
+    "target": "json-input",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "invalid-json",
+      "name": "single-quotes"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "invalid-json",
+      "name": "single-quotes"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "plus-number",
+    "target": "json-input",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "invalid-json",
+      "name": "plus-number"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "invalid-json",
+      "name": "plus-number"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "bare-inf",
+    "target": "json-input",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "invalid-json",
+      "name": "bare-inf"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "invalid-json",
+      "name": "bare-inf"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "nested-id-kept",
+    "target": "full-assertion",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "identity",
+      "reason": "id-mismatch",
+      "name": "nested-id-kept"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "identity",
+      "reason": "id-mismatch",
+      "name": "nested-id-kept"
+    },
+    "stage_matches_target": null
+  },
+  {
+    "name": "type-channel-on-pointer-shape",
+    "target": "schema",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "type-channel-on-pointer-shape"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "type-channel-on-pointer-shape"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "future-type",
+    "target": "schema",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "unknown-type",
+      "name": "future-type"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "unknown-type",
+      "name": "future-type"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "a9",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "a9"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "a9"
+    },
+    "stage_matches_target": null
+  },
+  {
+    "name": "utf8-vs-utf16-keys",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "utf8-vs-utf16-keys"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "utf8-vs-utf16-keys"
+    },
+    "stage_matches_target": null
+  },
+  {
+    "name": "ext-round",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "ext-round"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "ext-round"
+    },
+    "stage_matches_target": null
+  },
+  {
+    "name": "ext-2e53",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "ext-2e53"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "ext-2e53"
+    },
+    "stage_matches_target": null
+  },
+  {
+    "name": "rfc8785-example",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "rfc8785-example"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "rfc8785-example"
+    },
+    "stage_matches_target": null
+  },
+  {
+    "name": "n-0.1",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "n-0.1"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "n-0.1"
+    },
+    "stage_matches_target": null
+  },
+  {
+    "name": "n-1e-6",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "n-1e-6"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "n-1e-6"
+    },
+    "stage_matches_target": null
+  },
+  {
+    "name": "n-1e-7",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "n-1e-7"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "n-1e-7"
+    },
+    "stage_matches_target": null
+  },
+  {
+    "name": "n-1e20",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "n-1e20"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "n-1e20"
+    },
+    "stage_matches_target": null
+  },
+  {
+    "name": "n-1e21",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "n-1e21"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "n-1e21"
+    },
+    "stage_matches_target": null
+  },
+  {
+    "name": "n-1e22",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "n-1e22"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "n-1e22"
+    },
+    "stage_matches_target": null
+  },
+  {
+    "name": "ctrl-unescaped",
+    "target": "json-input",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "invalid-json",
+      "name": "ctrl-unescaped"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "invalid-json",
+      "name": "ctrl-unescaped"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "ctrl-escaped",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "ctrl-escaped"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "ctrl-escaped"
+    },
+    "stage_matches_target": null
+  },
+  {
+    "name": "pad-1024-units-shape",
+    "target": "full-assertion",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "identifier",
+      "reason": "missing-id",
+      "name": "pad-1024-units-shape"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "identifier",
+      "reason": "missing-id",
+      "name": "pad-1024-units-shape"
+    },
+    "stage_matches_target": null
+  },
+  {
+    "name": "pad-1025-units-shape",
+    "target": "full-assertion",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "identifier",
+      "reason": "missing-id",
+      "name": "pad-1025-units-shape"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "identifier",
+      "reason": "missing-id",
+      "name": "pad-1025-units-shape"
+    },
+    "stage_matches_target": null
+  },
+  {
+    "name": "deep-ext-shape",
+    "target": "full-assertion",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "identifier",
+      "reason": "missing-id",
+      "name": "deep-ext-shape"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "identifier",
+      "reason": "missing-id",
+      "name": "deep-ext-shape"
+    },
+    "stage_matches_target": null
+  },
+  {
+    "name": "deep-dup-name",
+    "target": "full-assertion",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "duplicate-member-name",
+      "name": "deep-dup-name"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "json-input",
+      "reason": "duplicate-member-name",
+      "name": "deep-dup-name"
+    },
+    "stage_matches_target": null
+  },
+  {
+    "name": "deep-unknown-top",
+    "target": "full-assertion",
+    "expected": null,
+    "impl_a": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "deep-unknown-top"
+    },
+    "impl_b": {
+      "status": "INVALID",
+      "stage": "schema",
+      "reason": "schema",
+      "name": "deep-unknown-top"
+    },
+    "stage_matches_target": null
+  },
+  {
+    "name": "num-0",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "name": "num-0",
+      "status": "OK",
+      "jcs_hex": "7b226e223a307d"
+    },
+    "impl_b": {
+      "name": "num-0",
+      "status": "OK",
+      "jcs_hex": "7b226e223a307d"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "num-1",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "name": "num-1",
+      "status": "OK",
+      "jcs_hex": "7b226e223a317d"
+    },
+    "impl_b": {
+      "name": "num-1",
+      "status": "OK",
+      "jcs_hex": "7b226e223a317d"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "num--1",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "name": "num--1",
+      "status": "OK",
+      "jcs_hex": "7b226e223a2d317d"
+    },
+    "impl_b": {
+      "name": "num--1",
+      "status": "OK",
+      "jcs_hex": "7b226e223a2d317d"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "num-1.0",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "name": "num-1.0",
+      "status": "OK",
+      "jcs_hex": "7b226e223a317d"
+    },
+    "impl_b": {
+      "name": "num-1.0",
+      "status": "OK",
+      "jcs_hex": "7b226e223a317d"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "num-0.1",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "name": "num-0.1",
+      "status": "OK",
+      "jcs_hex": "7b226e223a302e317d"
+    },
+    "impl_b": {
+      "name": "num-0.1",
+      "status": "OK",
+      "jcs_hex": "7b226e223a302e317d"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "num-0.3",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "name": "num-0.3",
+      "status": "OK",
+      "jcs_hex": "7b226e223a302e337d"
+    },
+    "impl_b": {
+      "name": "num-0.3",
+      "status": "OK",
+      "jcs_hex": "7b226e223a302e337d"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "num-1.1",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "name": "num-1.1",
+      "status": "OK",
+      "jcs_hex": "7b226e223a312e317d"
+    },
+    "impl_b": {
+      "name": "num-1.1",
+      "status": "OK",
+      "jcs_hex": "7b226e223a312e317d"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "num-1e-6",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "name": "num-1e-6",
+      "status": "OK",
+      "jcs_hex": "7b226e223a302e3030303030317d"
+    },
+    "impl_b": {
+      "name": "num-1e-6",
+      "status": "OK",
+      "jcs_hex": "7b226e223a302e3030303030317d"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "num-1e-7",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "name": "num-1e-7",
+      "status": "OK",
+      "jcs_hex": "7b226e223a31652d377d"
+    },
+    "impl_b": {
+      "name": "num-1e-7",
+      "status": "OK",
+      "jcs_hex": "7b226e223a31652d377d"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "num-1e20",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "name": "num-1e20",
+      "status": "OK",
+      "jcs_hex": "7b226e223a3130303030303030303030303030303030303030307d"
+    },
+    "impl_b": {
+      "name": "num-1e20",
+      "status": "OK",
+      "jcs_hex": "7b226e223a3130303030303030303030303030303030303030307d"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "num-1e21",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "name": "num-1e21",
+      "status": "OK",
+      "jcs_hex": "7b226e223a31652b32317d"
+    },
+    "impl_b": {
+      "name": "num-1e21",
+      "status": "OK",
+      "jcs_hex": "7b226e223a31652b32317d"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "num-1e22",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "name": "num-1e22",
+      "status": "OK",
+      "jcs_hex": "7b226e223a31652b32327d"
+    },
+    "impl_b": {
+      "name": "num-1e22",
+      "status": "OK",
+      "jcs_hex": "7b226e223a31652b32327d"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "num-9007199254740991",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "name": "num-9007199254740991",
+      "status": "OK",
+      "jcs_hex": "7b226e223a393030373139393235343734303939317d"
+    },
+    "impl_b": {
+      "name": "num-9007199254740991",
+      "status": "OK",
+      "jcs_hex": "7b226e223a393030373139393235343734303939317d"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "num-9007199254740992",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "name": "num-9007199254740992",
+      "status": "OK",
+      "jcs_hex": "7b226e223a393030373139393235343734303939327d"
+    },
+    "impl_b": {
+      "name": "num-9007199254740992",
+      "status": "OK",
+      "jcs_hex": "7b226e223a393030373139393235343734303939327d"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "num-9007199254740993",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "name": "num-9007199254740993",
+      "status": "OK",
+      "jcs_hex": "7b226e223a393030373139393235343734303939327d"
+    },
+    "impl_b": {
+      "name": "num-9007199254740993",
+      "status": "OK",
+      "jcs_hex": "7b226e223a393030373139393235343734303939327d"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "num-333333333.33333329",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "name": "num-333333333.33333329",
+      "status": "OK",
+      "jcs_hex": "7b226e223a3333333333333333332e333333333333337d"
+    },
+    "impl_b": {
+      "name": "num-333333333.33333329",
+      "status": "OK",
+      "jcs_hex": "7b226e223a3333333333333333332e333333333333337d"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "num-5e-324",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "name": "num-5e-324",
+      "status": "OK",
+      "jcs_hex": "7b226e223a35652d3332347d"
+    },
+    "impl_b": {
+      "name": "num-5e-324",
+      "status": "OK",
+      "jcs_hex": "7b226e223a35652d3332347d"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "num-2.2250738585072014e-308",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "name": "num-2.2250738585072014e-308",
+      "status": "OK",
+      "jcs_hex": "7b226e223a322e32323530373338353835303732303134652d3330387d"
+    },
+    "impl_b": {
+      "name": "num-2.2250738585072014e-308",
+      "status": "OK",
+      "jcs_hex": "7b226e223a322e32323530373338353835303732303134652d3330387d"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "num-1.7976931348623157e+308",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "name": "num-1.7976931348623157e+308",
+      "status": "OK",
+      "jcs_hex": "7b226e223a312e37393736393331333438363233313537652b3330387d"
+    },
+    "impl_b": {
+      "name": "num-1.7976931348623157e+308",
+      "status": "OK",
+      "jcs_hex": "7b226e223a312e37393736393331333438363233313537652b3330387d"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "num-0.000001",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "name": "num-0.000001",
+      "status": "OK",
+      "jcs_hex": "7b226e223a302e3030303030317d"
+    },
+    "impl_b": {
+      "name": "num-0.000001",
+      "status": "OK",
+      "jcs_hex": "7b226e223a302e3030303030317d"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "num-100000000000000000000",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "name": "num-100000000000000000000",
+      "status": "OK",
+      "jcs_hex": "7b226e223a3130303030303030303030303030303030303030307d"
+    },
+    "impl_b": {
+      "name": "num-100000000000000000000",
+      "status": "OK",
+      "jcs_hex": "7b226e223a3130303030303030303030303030303030303030307d"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "num-1.2345e-10",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "name": "num-1.2345e-10",
+      "status": "OK",
+      "jcs_hex": "7b226e223a312e32333435652d31307d"
+    },
+    "impl_b": {
+      "name": "num-1.2345e-10",
+      "status": "OK",
+      "jcs_hex": "7b226e223a312e32333435652d31307d"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "num-6.02214076e+23",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "name": "num-6.02214076e+23",
+      "status": "OK",
+      "jcs_hex": "7b226e223a362e3032323134303736652b32337d"
+    },
+    "impl_b": {
+      "name": "num-6.02214076e+23",
+      "status": "OK",
+      "jcs_hex": "7b226e223a362e3032323134303736652b32337d"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "num-36101157879172420000",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "name": "num-36101157879172420000",
+      "status": "OK",
+      "jcs_hex": "7b226e223a33363130313135373837393137323432303030307d"
+    },
+    "impl_b": {
+      "name": "num-36101157879172420000",
+      "status": "OK",
+      "jcs_hex": "7b226e223a33363130313135373837393137323432303030307d"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "num-295147905179352830000",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "name": "num-295147905179352830000",
+      "status": "OK",
+      "jcs_hex": "7b226e223a3239353134373930353137393335323833303030307d"
+    },
+    "impl_b": {
+      "name": "num-295147905179352830000",
+      "status": "OK",
+      "jcs_hex": "7b226e223a3239353134373930353137393335323833303030307d"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "num-999999999999999700000",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "name": "num-999999999999999700000",
+      "status": "OK",
+      "jcs_hex": "7b226e223a3939393939393939393939393939393730303030307d"
+    },
+    "impl_b": {
+      "name": "num-999999999999999700000",
+      "status": "OK",
+      "jcs_hex": "7b226e223a3939393939393939393939393939393730303030307d"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "a9",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "name": "a9",
+      "status": "OK",
+      "jcs_hex": "7b22f0908080223a322c22ee8080223a317d"
+    },
+    "impl_b": {
+      "name": "a9",
+      "status": "OK",
+      "jcs_hex": "7b22f0908080223a322c22ee8080223a317d"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "keys-ascii",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "name": "keys-ascii",
+      "status": "OK",
+      "jcs_hex": "7b2261223a322c2262223a317d"
+    },
+    "impl_b": {
+      "name": "keys-ascii",
+      "status": "OK",
+      "jcs_hex": "7b2261223a322c2262223a317d"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "ctrl",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "name": "ctrl",
+      "status": "OK",
+      "jcs_hex": "7b226e223a225c75303030315c7530303166227d"
+    },
+    "impl_b": {
+      "name": "ctrl",
+      "status": "OK",
+      "jcs_hex": "7b226e223a225c75303030315c7530303166227d"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "quote",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "name": "quote",
+      "status": "OK",
+      "jcs_hex": "7b226e223a22615c2262227d"
+    },
+    "impl_b": {
+      "name": "quote",
+      "status": "OK",
+      "jcs_hex": "7b226e223a22615c2262227d"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "slash",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "name": "slash",
+      "status": "OK",
+      "jcs_hex": "7b226e223a22612f62227d"
+    },
+    "impl_b": {
+      "name": "slash",
+      "status": "OK",
+      "jcs_hex": "7b226e223a22612f62227d"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "bools",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "name": "bools",
+      "status": "OK",
+      "jcs_hex": "7b2261223a747275652c2262223a66616c73652c2263223a6e756c6c7d"
+    },
+    "impl_b": {
+      "name": "bools",
+      "status": "OK",
+      "jcs_hex": "7b2261223a747275652c2262223a66616c73652c2263223a6e756c6c7d"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "arr",
+    "target": "jcs",
+    "expected": null,
+    "impl_a": {
+      "name": "arr",
+      "status": "OK",
+      "jcs_hex": "7b2261223a5b312c322c7b2261223a312c227a223a307d5d7d"
+    },
+    "impl_b": {
+      "name": "arr",
+      "status": "OK",
+      "jcs_hex": "7b2261223a5b312c322c7b2261223a312c227a223a307d5d7d"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "ed-a1-ok",
+    "target": "spp-ed25519-1",
+    "expected": null,
+    "impl_a": {
+      "name": "ed-a1-ok",
+      "status": "VALID"
+    },
+    "impl_b": {
+      "name": "ed-a1-ok",
+      "status": "VALID"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "ed-n14",
+    "target": "spp-ed25519-1",
+    "expected": null,
+    "impl_a": {
+      "name": "ed-n14",
+      "status": "INVALID"
+    },
+    "impl_b": {
+      "name": "ed-n14",
+      "status": "INVALID"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "ed-n15",
+    "target": "spp-ed25519-1",
+    "expected": null,
+    "impl_a": {
+      "name": "ed-n15",
+      "status": "INVALID"
+    },
+    "impl_b": {
+      "name": "ed-n15",
+      "status": "INVALID"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "ed-n19",
+    "target": "spp-ed25519-1",
+    "expected": null,
+    "impl_a": {
+      "name": "ed-n19",
+      "status": "INVALID"
+    },
+    "impl_b": {
+      "name": "ed-n19",
+      "status": "INVALID"
+    },
+    "stage_matches_target": true
+  },
+  {
+    "name": "ed-n20",
+    "target": "spp-ed25519-1",
+    "expected": null,
+    "impl_a": {
+      "name": "ed-n20",
+      "status": "INVALID"
+    },
+    "impl_b": {
+      "name": "ed-n20",
+      "status": "INVALID"
+    },
+    "stage_matches_target": true
+  }
+]
