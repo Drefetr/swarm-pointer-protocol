@@ -233,12 +233,12 @@ curl -fsS https://spp.drefetr.net/v1/channels/sha256/<64hex>/assertions
 
 ## Federation
 
-This relay federates like any other SPP client. `federation/sync.py` reads the
-source's public surface and posts accepted assertions to the destination, both
-over ordinary HTTP:
+This relay federates like any other SPP client. `implementations/relay/federation/sync.py`
+reads the source's public surface and posts accepted assertions to the
+destination, both over ordinary HTTP:
 
 ```text
-python federation/sync.py \
+python implementations/relay/federation/sync.py \
     --source https://spp.drefetr.net \
     --destination https://<other-relay> \
     [--channel sha256:<64hex>]
@@ -246,7 +246,7 @@ python federation/sync.py \
 
 Run it from cron/systemd timer for periodic catch-up. Federation is not
 consensus and is not mandatory mirroring; destination policy still applies
-(`federation/README.md`).
+(`implementations/relay/federation/README.md`).
 
 ## Upgrade discipline
 

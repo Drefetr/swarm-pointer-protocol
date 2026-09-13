@@ -70,7 +70,7 @@ Capability channels are deliberately absent from `GET /v1/channels`. They are
 reachable only by a client that already possesses the channel id:
 
 ```text
-python relay/federation/sync.py \
+python implementations/relay/federation/sync.py \
   --source http://127.0.0.1:18760 \
   --destination http://127.0.0.1:18761 \
   --channel sha256:<C>

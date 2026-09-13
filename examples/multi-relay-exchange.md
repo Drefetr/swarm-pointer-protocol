@@ -5,8 +5,8 @@ Two independent durable relays each hold a different subset of the same opaque
 channel; agents reconstruct the union by querying both; a federation worker
 makes the relays converge using only ordinary SPP `GET` + `POST`.
 
-Requirements: Python 3.10+, Node 20+, and `impl-b` dependencies installed
-(`npm ci` in `impl-b`).
+Requirements: Python 3.10+, Node 20+, and TypeScript dependencies installed
+(`npm ci` in `implementations/typescript`).
 
 > Shell note: command blocks below are shown in POSIX form. On Windows
 > PowerShell use the equivalent syntax; `$C` is a shell variable you set once
@@ -208,5 +208,5 @@ For the fully automated version, including object-index federation, cross-relay
 parent references, a hostile source relay, and a full cold restart, run:
 
 ```text
-python interoperability/multi-relay-e2e/run_tests.py
+python tests/interoperability/multi-relay-e2e/run_tests.py
 ```

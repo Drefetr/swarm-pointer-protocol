@@ -19,7 +19,7 @@ continues. The relay never fetches, hosts, or interprets referenced content.
 ## Layout
 
 ```text
-interoperability/durable-e2e/
+tests/interoperability/durable-e2e/
     run_tests.py        process orchestrator and assertions
     README.md
     fixtures/           exact external-object bytes (a1.bin, b1.bin, ...)
@@ -78,8 +78,8 @@ printed. Pass `--keep` to preserve it even on success.
 
 The harness only starts processes and inspects the relay and object servers. It
 never mines, signs, submits, polls, or dereferences a locator on the agents'
-behalf; all protocol actions are separate `clients/agent-a` and
-`clients/agent-b` CLI invocations. Served assertions are independently
+behalf; all protocol actions are separate `examples/agent-a` and
+`examples/agent-b` CLI invocations. Served assertions are independently
 revalidated against the frozen `impl-a` v1 profile for the assertion-level
 checks.
 

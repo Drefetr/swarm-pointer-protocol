@@ -8,9 +8,9 @@ objects from their locators, and accepts payloads only after the `§23` SHA-256
 check.
 
 It is unrelated to Agent A: a different language, JSON stack, and Ed25519
-implementation. It imports the verifier from `impl-b/src` (`check`, `curve`,
-`canon`, `scan`) and uses `node:crypto` only for hashing and seed-to-public-key
-derivation.
+implementation. It imports the verifier from `../../implementations/typescript/src`
+(`check`, `curve`, `canon`, `scan`) and uses `node:crypto` only for hashing and
+seed-to-public-key derivation.
 
 The relay is never trusted for validity: every assertion returned by a relay
 is revalidated here under the complete `§20` profile.

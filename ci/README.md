@@ -24,7 +24,7 @@ Gates:
 | differential mutation | `tests/conformance/mutate_diff.py` | corpus classified by target subfunction |
 | binary64 fuzz | `tests/conformance/fuzz_binary64.py` | random corpus vs impl-a, impl-b, independent V8 oracle |
 | relay interop | `tests/interoperability/relay-tests/run_tests.py` | relays interoperate over §28 |
-| durable relay | `relay/test_relay.py` | SQLite relay persists assertions and indexes |
+| durable relay | `implementations/relay/test_relay.py` | SQLite relay persists assertions and indexes |
 | durable two-agent e2e | `tests/interoperability/durable-e2e/run_tests.py` | cross-language actor exchange survives cold restart |
 | multi-relay federation e2e | `tests/interoperability/multi-relay-e2e/run_tests.py` | two relays synchronize via ordinary GET + POST |
 

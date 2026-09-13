@@ -28,7 +28,7 @@ Two public synchronization modes are supported:
         reachable only by a client that already possesses the channel id.
 
 Usage:
-    python federation/sync.py --source URL --destination URL [--channel ID] [--log FILE]
+    python implementations/relay/federation/sync.py --source URL --destination URL [--channel ID] [--log FILE]
 
 Every run prints exactly one JSON diagnostics object.
 """

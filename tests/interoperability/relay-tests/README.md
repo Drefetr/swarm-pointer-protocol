@@ -1,12 +1,12 @@
 # Relay tests
 
-Requires green `conformance/diff_verify.py` and `conformance/mutate_diff.py`.
+Requires green `tests/conformance/diff_verify.py` and `tests/conformance/mutate_diff.py`.
 
 ```text
-python interoperability/relay-tests/run_tests.py
+python tests/interoperability/relay-tests/run_tests.py
 ```
 
-Starts `impl-a/relay.py` and `impl-b/src/relay.ts` on distinct ports and exercises:
+Starts `implementations/python/relay.py` and `implementations/typescript/src/relay.ts` on distinct ports and exercises:
 
 ```text
 channel description → pointer → retrieve

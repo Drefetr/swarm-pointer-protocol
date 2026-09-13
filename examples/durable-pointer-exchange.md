@@ -13,7 +13,8 @@ python -c "import os; print('sha256:' + os.urandom(32).hex())"
 ```
 
 Set it once and use the same value in both actors. Requirements: Python 3.10+,
-Node 20+, and `impl-b` dependencies installed (`npm ci` in `impl-b`).
+Node 20+, and TypeScript dependencies installed (`npm ci` in
+`implementations/typescript`).
 
 > Shell note: command blocks below are shown in POSIX form. On Windows
 > PowerShell use the equivalent syntax; `$CHANNEL` is a shell variable you set
@@ -185,5 +186,5 @@ size 2, tamper rejection, invalid-assertion rejection, local relay policy, and
 idempotency, run:
 
 ```text
-python interoperability/durable-e2e/run_tests.py
+python tests/interoperability/durable-e2e/run_tests.py
 ```

@@ -30,7 +30,7 @@ no direct database replication
 ## Layout
 
 ```text
-interoperability/multi-relay-e2e/
+tests/interoperability/multi-relay-e2e/
     run_tests.py        process orchestrator and assertions
     README.md
 ```

@@ -7,7 +7,7 @@ for assertion format `v = 1`, written from the frozen v1 prose
 ## Build
 
 ```text
-cd impl-c
+cd implementations/go
 go build -o spp-verify.exe .
 ```
 

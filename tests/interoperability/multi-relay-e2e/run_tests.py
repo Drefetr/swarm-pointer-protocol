@@ -13,7 +13,7 @@ every protocol action is a separate CLI invocation. Served assertions are
 independently revalidated here against the frozen `impl-a` v1 profile.
 
 Usage:
-    python interoperability/multi-relay-e2e/run_tests.py [--keep]
+    python tests/interoperability/multi-relay-e2e/run_tests.py [--keep]
 """
 
 from __future__ import annotations
