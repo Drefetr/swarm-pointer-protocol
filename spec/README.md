@@ -18,7 +18,7 @@ Guide name the machine-readable conformance suite by its release-relative path:
 conformance/vectors/suite.json
 ```
 
-That is the layout of the immutable `spp-v1-frozen` release package
+That is the layout of the immutable `v1` release package
 (see [`../docs/CHANGELOG.md`](../docs/CHANGELOG.md)). The repository workspace
 stores the same bytes under `tests/conformance/`:
 
@@ -43,7 +43,7 @@ python ci/run_conformance.py
 
 ## Release metadata
 
-[`../docs/releases/spp-v1-frozen.md`](../docs/releases/spp-v1-frozen.md) pins the
+[`../docs/releases/v1.md`](../docs/releases/v1.md) pins the
 SHA-256 of the specification and of the normative suite, as the specification
 recommends, over LF-normalized bytes so the digests are identical on every
 platform. Reproduce and verify the whole package with:

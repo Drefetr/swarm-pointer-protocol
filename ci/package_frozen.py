@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Assemble the immutable ``spp-v1-frozen`` release package.
+"""Assemble the immutable ``v1`` release package.
 
 The frozen specification names the normative suite at
 ``conformance/vectors/suite.json``. This script reproduces that layout from the
@@ -15,10 +15,10 @@ Usage:
     --check     verify frozen digests only; write nothing
 
 Output (under ``dist/`` by default):
-    spp-v1-frozen/            staged package tree
-    spp-v1-frozen/MANIFEST.sha256
-    spp-v1-frozen.zip         deterministic archive (ZIP_STORED, fixed metadata)
-    spp-v1-frozen.zip.sha256  archive digest
+    v1/                       staged package tree
+    v1/MANIFEST.sha256
+    v1.zip                    deterministic archive (ZIP_STORED, fixed metadata)
+    v1.zip.sha256             archive digest
 """
 
 from __future__ import annotations
@@ -47,7 +47,7 @@ PACKAGE = [
     ("spec/SPP-v1-External-Review-Guide.md", "SPP-v1-External-Review-Guide.md"),
     ("tests/conformance/vectors/suite.json", "conformance/vectors/suite.json"),
     ("LICENSE", "LICENSE"),
-    ("docs/releases/spp-v1-frozen.md", "RELEASE-NOTES.md"),
+    ("docs/releases/v1.md", "RELEASE-NOTES.md"),
 ]
 
 ZIP_EPOCH = (1980, 1, 1, 0, 0, 0)
@@ -102,7 +102,7 @@ def main() -> int:
 
     manifest = build_manifest(files)
 
-    pkg = out / "spp-v1-frozen"
+    pkg = out / "v1"
     if pkg.exists():
         shutil.rmtree(pkg)
     for name, data in files:
@@ -112,7 +112,7 @@ def main() -> int:
     (pkg / "MANIFEST.sha256").write_bytes(manifest)
 
     entries = sorted(files + [("MANIFEST.sha256", manifest)], key=lambda x: x[0])
-    zip_path = out / "spp-v1-frozen.zip"
+    zip_path = out / "v1.zip"
     with zipfile.ZipFile(zip_path, "w", compression=zipfile.ZIP_STORED) as z:
         for name, data in entries:
             info = zipfile.ZipInfo(name, date_time=ZIP_EPOCH)
@@ -122,8 +122,8 @@ def main() -> int:
             z.writestr(info, data)
 
     archive_digest = digest(zip_path.read_bytes())
-    (out / "spp-v1-frozen.zip.sha256").write_text(
-        f"{archive_digest}  spp-v1-frozen.zip\n", encoding="ascii"
+    (out / "v1.zip.sha256").write_text(
+        f"{archive_digest}  v1.zip\n", encoding="ascii"
     )
     print(f"\narchive  {zip_path}")
     print(f"sha256   {archive_digest}")

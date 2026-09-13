@@ -17,8 +17,8 @@ protocol maxima require a new assertion version (`v = 2`).
   `max_locator_bytes`, `max_parents`) and enforces them as local policy,
   clamped to the v1 maxima. Exceeding a locally advertised limit is a `403`
   policy rejection, not a protocol-invalidity claim.
-- `ci/package_frozen.py` and `docs/releases/spp-v1-frozen.md` — reproducible
-  `spp-v1-frozen` release package (spec-layout archive, pinned digests,
+- `ci/package_frozen.py` and `docs/releases/v1.md` — reproducible
+  `v1` release package (spec-layout archive, pinned digests,
   deterministic zip).
 - `frozen package identity` conformance gate: the spec and suite bytes must
   match the pinned release digests or the run fails.
@@ -46,9 +46,9 @@ protocol maxima require a new assertion version (`v = 2`).
 - Repo restructured: `spec/`, `implementations/`, `tests/`, `docs/`, `ci/` replacing
   the previous flat layout.
 
-## [spp-v1-frozen] - 2026-09-13
+## [v1] - 2026-09-13
 
 Initial frozen release of Swarm Pointer Protocol assertion format `v = 1`
-(`spp-v1-frozen`). Three independent implementations, normative conformance
+(`v1`). Three independent implementations, normative conformance
 suite, and clean-room Go verifier included; external hostile review returned
 `NO_FORK_FOUND`.

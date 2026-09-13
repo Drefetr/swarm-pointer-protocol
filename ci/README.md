@@ -34,4 +34,4 @@ Implementations never regenerate expected results. They read
 byte strings.
 
 `package_frozen.py` also assembles the immutable release package in the layout
-the frozen specification names; see `docs/releases/spp-v1-frozen.md`.
+the frozen specification names; see `docs/releases/v1.md`.
