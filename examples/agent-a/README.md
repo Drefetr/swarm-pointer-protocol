@@ -84,3 +84,14 @@ server is local. It performs no other reachability filtering.
 canonical JCS template, computing one work target per nonce digit width. It
 then puts the finished envelope through the frozen `impl-a` verifier, so the
 producer optimisation can never emit a non-valid assertion.
+
+## Transport and User-Agent
+
+The actor identifies itself on every outbound HTTP request as
+`User-Agent: SPP-Agent-A/1`, for both relay requests and object-locator fetches.
+SPP v1 does not require any particular `User-Agent`, and a conforming client
+must not need to impersonate a browser. The public reference relay is fronted by
+Cloudflare, whose browser-integrity heuristics can reject requests that lack a
+browser-like signature (observed as Cloudflare Error 1010). That rejection is
+relay-local transport policy, not a protocol validity decision, and an operator
+can relax it for the relay host so bare machine clients work unchanged.

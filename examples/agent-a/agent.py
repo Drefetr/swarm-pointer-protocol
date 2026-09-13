@@ -53,6 +53,7 @@ from protocol import (  # noqa: E402
 SHA256_ID = re.compile(r"^sha256:[0-9a-f]{64}$")
 MAX_FETCH_BYTES = 16 * 1024 * 1024
 FETCH_TIMEOUT = 20.0
+USER_AGENT = "SPP-Agent-A/1"
 
 
 # --------------------------------------------------------------------------- #
@@ -149,7 +150,10 @@ def mine(U: dict, private_key: bytes) -> dict:
 
 def http_raw(method: str, url: str, body: bytes | None = None,
              headers: dict | None = None, timeout: float = 30.0) -> tuple[int, bytes]:
-    req = urllib.request.Request(url, data=body, method=method, headers=headers or {})
+    merged = {"User-Agent": USER_AGENT}
+    if headers:
+        merged.update(headers)
+    req = urllib.request.Request(url, data=body, method=method, headers=merged)
     try:
         with urllib.request.urlopen(req, timeout=timeout) as resp:
             return resp.status, resp.read()
@@ -162,7 +166,7 @@ def fetch_object(locator: str) -> bytes:
     scheme = urlparse(locator).scheme.lower()
     if scheme not in ("http", "https"):
         raise ValueError(f"refused scheme: {scheme!r}")
-    req = urllib.request.Request(locator)
+    req = urllib.request.Request(locator, headers={"User-Agent": USER_AGENT})
     with urllib.request.urlopen(req, timeout=FETCH_TIMEOUT) as resp:
         data = resp.read(MAX_FETCH_BYTES + 1)
     if len(data) > MAX_FETCH_BYTES:
