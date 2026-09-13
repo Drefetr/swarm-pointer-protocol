@@ -1,0 +1,3 @@
+# Canonical text encoding. LF everywhere so frozen-package SHA-256 digests are
+# identical on every platform (no CRLF conversion on Windows checkouts).
+* text=auto eol=lf

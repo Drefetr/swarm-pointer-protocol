@@ -43,11 +43,12 @@ python ci/run_conformance.py
 
 ## Release metadata
 
-Release metadata for `spp-v1-frozen` pins the SHA-256 of the specification and of
-the normative suite, as the specification recommends. Recompute them from the
-workspace with:
+[`../docs/releases/spp-v1-frozen.md`](../docs/releases/spp-v1-frozen.md) pins the
+SHA-256 of the specification and of the normative suite, as the specification
+recommends, over LF-normalized bytes so the digests are identical on every
+platform. Reproduce and verify the whole package with:
 
 ```text
-python -c "import hashlib;print(hashlib.sha256(open('spec/SPP-v1-Core-Protocol-Specification.md','rb').read()).hexdigest())"
-python -c "import hashlib;print(hashlib.sha256(open('tests/conformance/vectors/suite.json','rb').read()).hexdigest())"
+python ci/package_frozen.py --check
+python ci/package_frozen.py
 ```
