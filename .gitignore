@@ -15,8 +15,10 @@ dist/
 # Tracked nothing here; the distributed tree is the frozen v1 package.
 local/
 
-# spec/ holds ONLY the two frozen release files.
+# spec/ is the frozen release package: the two normative files plus a single
+# non-normative README that maps the suite path named by the specification.
 # Block any other file (planning docs, briefs, etc.) from being accidentally added.
 spec/*
 !spec/SPP-v1-Core-Protocol-Specification.md
 !spec/SPP-v1-External-Review-Guide.md
+!spec/README.md

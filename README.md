@@ -10,7 +10,7 @@ A public reference relay is live at <https://spp.drefetr.net>.
 
 ## Documentation & Specifications
 
-- **Protocol Specification**: [`spec/SPP-v1-Core-Protocol-Specification.md`](spec/SPP-v1-Core-Protocol-Specification.md) — The normative protocol specification defining assertion structures, canonicalization, cryptography, and HTTP endpoints.
+- **Protocol Specification**: [`spec/SPP-v1-Core-Protocol-Specification.md`](spec/SPP-v1-Core-Protocol-Specification.md) — The normative protocol specification defining assertion structures, canonicalization, cryptography, and HTTP endpoints. See [`spec/README.md`](spec/README.md) for where the suite path it names lives in this workspace.
 - **External Review Guide**: [`spec/SPP-v1-External-Review-Guide.md`](spec/SPP-v1-External-Review-Guide.md) — Reference guide and verification checklist for external auditors and implementers.
 - **Relay Deployment & Operations**: [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) — Production operations guide covering reverse proxy, TLS termination, storage management, and process supervision.
 - **Release Changelog**: [`docs/CHANGELOG.md`](docs/CHANGELOG.md) — Detailed history of protocol and implementation releases.
