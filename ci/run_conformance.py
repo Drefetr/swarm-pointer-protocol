@@ -4,9 +4,9 @@
 Runs the gates that must pass before ``v = 1`` can be frozen:
 
     1. generated-vector drift      committed suite.json == generator output
-    2. impl-a conformance          committed suite.json, independently
-    3. impl-b conformance          committed suite.json, independently
-    4. differential suite          impl-a vs impl-b on suite.json
+    2. Python conformance          committed suite.json, independently
+    3. TypeScript conformance      committed suite.json, independently
+    4. differential suite          Python vs TypeScript on suite.json
     5. JCS number tests            dedicated number path, both impls
     6. permanent regressions       exact-byte hostile-review fixtures
     7. property-name hostility     Object.prototype-hostile member names
@@ -61,11 +61,11 @@ def main() -> int:
     steps: list[tuple[str, list[str], Path]] = [
         ("generated-vector drift",
          [py, str(ROOT / "tests" / "conformance" / "build_suite.py"), "--check"], ROOT),
-        ("impl-a conformance",
+        ("Python conformance",
          [py, str(ROOT / "implementations" / "python" / "spp_verify.py"), "--suite", str(SUITE)], ROOT),
-        ("impl-b conformance",
+        ("TypeScript conformance",
          [str(TSX), "src/cli.ts", "--suite", str(SUITE)], ROOT / "implementations" / "typescript"),
-        ("impl-b typecheck",
+        ("TypeScript typecheck",
          [str(TSC), "--noEmit"], ROOT / "implementations" / "typescript"),
         ("differential suite",
          [py, str(ROOT / "tests" / "conformance" / "diff_verify.py")], ROOT),

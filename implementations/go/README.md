@@ -1,4 +1,4 @@
-# implementations/go — RC3 clean-room SPP v1 verifier
+# implementations/go — Go clean-room SPP v1 verifier
 
 An independent Go implementation of the §20 protocol-validity decision function
 for assertion format `v = 1`, written from the frozen v1 prose

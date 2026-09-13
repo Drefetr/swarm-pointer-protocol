@@ -1,6 +1,6 @@
 """Binary64 differential fuzzer — Workstream D.
 
-Generates random IEEE-754 binary64 values, serializes through impl-a and impl-b,
+Generates random IEEE-754 binary64 values, serializes through the Python and TypeScript implementations,
 and requires exact UTF-8 byte equality. An independent ECMAScript/V8 oracle lane
 (raw ``JSON.parse`` + ``JSON.stringify``, not either implementation's JCS code)
 is also checked so that two co-buggy implementations cannot agree with each other.
@@ -29,7 +29,7 @@ TSX = ROOT / "implementations" / "typescript" / "node_modules" / ".bin" / ("tsx.
 NODE = "node"
 REGRESSIONS_DIR = ROOT / "tests" / "conformance" / "regressions"
 
-# Independent oracle: raw V8 via Node, no impl-a/impl-b code. This is the
+# Independent oracle: raw V8 via Node, no implementation code. This is the
 # ECMAScript Number::toString behaviour that RFC 8785 normatively references.
 _ORACLE_JS = r"""
 const fs = require("fs");

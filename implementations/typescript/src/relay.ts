@@ -1,4 +1,4 @@
-/** Tiny ┬º28 HTTP relay. Uses impl-b validation. Independent of impl-a/relay.py. */
+/** Tiny ┬º28 HTTP relay. Uses TypeScript validation. Independent of implementations/python/relay.py. */
 
 import { createServer, type IncomingMessage, type ServerResponse } from "node:http";
 import { jcsBytes } from "./canon.ts";

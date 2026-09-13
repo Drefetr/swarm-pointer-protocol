@@ -9,7 +9,7 @@ The harness only orchestrates processes and inspects the relay / object
 servers. It never mines, signs, submits, polls, or dereferences locators on the
 agents' behalf; every protocol action is performed by the `examples/agent-a`
 (Python) and `examples/agent-b` (TypeScript) CLIs as separate processes. Served
-assertions are independently revalidated here with the frozen `impl-a` verifier.
+assertions are independently revalidated here with the frozen Python reference verifier.
 
 Sequence (SPP v1 Durable Two-Agent Exchange test plan):
 

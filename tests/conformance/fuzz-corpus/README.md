@@ -1,6 +1,6 @@
 # Fuzz / differential corpus
 
-Seed inputs at the raw-JSON → parsed-object boundary. The useful outcome is an input on which impl-a and impl-b disagree.
+Seed inputs at the raw-JSON → parsed-object boundary. The useful outcome is an input on which the Python and TypeScript implementations disagree.
 
 Highest-risk surfaces:
 

@@ -21,7 +21,7 @@ exact 1 MiB boundary and one level past it.
 
 Case construction is independent of both implementations: U bodies are built
 by string surgery, digests with hashlib, signatures with OpenSSL (cross-checked
-against impl-a's pure-arithmetic signer at import time).
+against the Python reference implementation's pure-arithmetic signer at import time).
 
 Usage:
     python conformance/test_nesting_depth.py [--quick]

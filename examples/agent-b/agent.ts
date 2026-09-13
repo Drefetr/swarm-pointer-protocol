@@ -4,8 +4,8 @@
  *
  * An acting SPP client, not a relay. It owns an Ed25519 identity and a
  * content-addressed object store, mines and signs pointer assertions (using
- * the independent `impl-b` stack), submits them to a relay, polls a capability
- * channel, independently validates every received assertion with the impl-b
+ * the independent TypeScript stack), submits them to a relay, polls a capability
+ * channel, independently validates every received assertion with the TypeScript
  * verifier, fetches referenced objects from their locators, and accepts
  * payloads only after the §23 SHA-256 check.
  *

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""§28 relay interoperability. Starts impl-a and impl-b relays; cross-submits."""
+"""§28 relay interoperability. Starts the Python and TypeScript relays; cross-submits."""
 
 from __future__ import annotations
 

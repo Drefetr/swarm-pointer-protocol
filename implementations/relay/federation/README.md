@@ -10,7 +10,7 @@ source relay
     │  GET  (frozen §27/§28 public surface)
     ▼
 sync worker
-    │  local §20 validation with the impl-a verifier
+    │  local §20 validation with the Python reference verifier
     ▼
 destination relay
     ▲  POST (ordinary submission, destination policy applies)

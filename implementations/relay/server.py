@@ -2,7 +2,7 @@
 """SPP v1 durable HTTP relay.
 
 A persistent SPP relay — not an application server. It receives signed
-assertions, performs the complete frozen §20 validation using the impl-a
+assertions, performs the complete frozen §20 validation using the Python reference
 verifier, applies local policy, persists the canonical signed bytes, indexes
 them, and serves the frozen §27/§28 HTTP profile.
 

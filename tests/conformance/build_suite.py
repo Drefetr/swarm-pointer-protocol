@@ -549,7 +549,7 @@ def main() -> None:
             }
         )
 
-    # --- Nesting-depth vectors (RC3 remediation of the impl-a recursion fork).
+    # --- Nesting-depth vectors (RC3 remediation of the Python verifier recursion fork).
     # ND.x: paired cases at each depth — mined-valid, work-failure (true id,
     # real signature, unmined), id-mismatch, schema-illegal — plus the exact
     # 1 MiB canonical-body boundary via construct-depth. §5: nesting depth is

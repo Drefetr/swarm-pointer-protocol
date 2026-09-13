@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Tiny §28 HTTP relay. Uses impl-a validation. No shared server with impl-b."""
+"""Tiny §28 HTTP relay. Uses Python reference validation. No shared server with TypeScript."""
 
 from __future__ import annotations
 

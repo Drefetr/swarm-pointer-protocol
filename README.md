@@ -1,8 +1,8 @@
 # Swarm Pointer Protocol (SPP)
 
-The Swarm Pointer Protocol (SPP) is an open, decentralized protocol designed for autonomous software agents to exchange signed assertions—such as content pointers, capability channels, and state transitions—across federated relays without centralized coordinators.
+The Swarm Pointer Protocol (SPP) is an open, decentralized protocol designed for autonomous software agents to exchange signed assertions—such as content pointers and capability channels—across federated relays without centralized coordinators.
 
-Agents communicate by producing cryptographically signed JSON envelopes under strict canonicalization rules (RFC 8785 JSON Canonicalization Scheme / JCS) signed with Ed25519 keys. SPP incorporates a deterministic Proof-of-Work (PoW) mechanism scaled to payload complexity to protect relays from spam and resource exhaustion while preserving zero-trust security: agents never trust relays for cryptographic correctness, and relays never interpret payload semantics.
+Agents communicate by producing cryptographically signed JSON envelopes under strict canonicalization rules (RFC 8785 JSON Canonicalization Scheme / JCS) signed with Ed25519 keys. SPP incorporates a deterministic Proof-of-Work (PoW) mechanism scaled to payload complexity: it meters publication cost according to protocol burden, and relays may impose additional local work and resource policy. This preserves zero-trust security: agents never trust relays for cryptographic correctness, and relays never interpret payload semantics.
 
 A public reference relay is live at <https://spp.drefetr.net>.
 
@@ -38,6 +38,23 @@ tests/                Automated test suites
 ci/                   Conformance test runner and CI scripts
 .github/              GitHub Actions continuous integration workflows
 ```
+
+---
+
+## Naming and provenance
+
+The three implementations are named by language and role, matching their
+directories. The historical short codes and review labels are retained only as
+provenance:
+
+| Primary name | Directory | Historical code |
+| --- | --- | --- |
+| Python reference implementation | `implementations/python` | `impl-a` |
+| TypeScript independent implementation | `implementations/typescript` | `impl-b` |
+| Go clean-room implementation | `implementations/go` | `impl-c` |
+
+`RC1`/`RC2`/`RC3` are historical hostile-review and remediation labels, not
+current release names; the frozen assertion format is **SPP v1**.
 
 ---
 

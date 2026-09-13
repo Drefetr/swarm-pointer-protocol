@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""spp-verify for impl-a. Reads the spec; does not import tools/."""
+"""spp-verify for the Python reference implementation. Reads the spec; does not import tools/."""
 
 from __future__ import annotations
 

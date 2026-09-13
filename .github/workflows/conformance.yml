@@ -17,7 +17,7 @@ jobs:
           node-version: "20"
       - name: Install Python dependencies
         run: pip install cryptography
-      - name: Install impl-b dependencies
+      - name: Install TypeScript dependencies
         working-directory: implementations/typescript
         run: npm ci
       - name: v1 conformance gates

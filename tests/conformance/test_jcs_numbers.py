@@ -6,7 +6,7 @@ Tests the exact path:
         -> JCS serialization
         -> exact expected UTF-8 bytes
 
-Runs both impl-a (Python) and impl-b (TypeScript) and compares.
+Runs both the Python and TypeScript implementations and compares.
 Any disagreement is a hard error.
 """
 

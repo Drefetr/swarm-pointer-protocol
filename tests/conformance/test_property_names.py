@@ -13,7 +13,7 @@ Two directions, both consensus-critical:
    whose ``ext`` contains them must still verify under both implementations with
    the same recomputed ``id``.
 
-Implementation under test: impl-a (Python, in-process) and impl-b (TypeScript).
+Implementation under test: the Python reference implementation (in-process) and the TypeScript independent implementation.
 """
 
 from __future__ import annotations

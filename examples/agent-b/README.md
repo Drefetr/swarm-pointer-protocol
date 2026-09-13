@@ -3,7 +3,7 @@
 An acting SPP v1 client, **not** a relay. It owns an Ed25519 identity and a
 content-addressed object store, mines and signs pointer assertions, submits
 them to a relay, polls a capability channel, independently validates every
-received assertion with the frozen `impl-b` verifier, fetches referenced
+received assertion with the independent TypeScript verifier, fetches referenced
 objects from their locators, and accepts payloads only after the `§23` SHA-256
 check.
 
@@ -56,7 +56,7 @@ result schema so the two can be driven by the same harness.
   pointer assertion, submits it, and saves the canonical envelope under
   `<state>/published/`.
 - `poll` walks the channel list to `next == null`, validates each assertion
-  with the impl-b verifier, deduplicates by assertion id, fetches the first
+  with the TypeScript verifier, deduplicates by assertion id, fetches the first
   `ref.locators` entry that yields a finite octet stream, and stores it only
   when its SHA-256 equals `ref.hash`.
 - `submit` posts raw bytes to a relay and reports the HTTP result without local

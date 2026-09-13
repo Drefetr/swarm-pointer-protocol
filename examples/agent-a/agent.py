@@ -4,7 +4,7 @@
 This is an acting SPP client, not a relay. It owns an Ed25519 identity and a
 content-addressed object store, mines and signs pointer assertions, submits
 them to a relay, polls a capability channel, independently validates every
-received assertion with the frozen `impl-a` verifier, fetches referenced
+received assertion with the frozen Python reference verifier, fetches referenced
 objects from their locators, and accepts payloads only after the §23 SHA-256
 check.
 
@@ -106,7 +106,7 @@ def mine(U: dict, private_key: bytes) -> dict:
     Only the nonce value changes between candidates inside one digit-width
     block, so the canonical template is built once per width and the decimal
     nonce digits are patched in place. Every produced envelope is then put
-    through the frozen impl-a verifier, so a producer optimisation can never
+    through the frozen Python reference verifier, so a producer optimisation can never
     yield a non-valid assertion.
     """
     base = {k: v for k, v in U.items() if k != "nonce"}

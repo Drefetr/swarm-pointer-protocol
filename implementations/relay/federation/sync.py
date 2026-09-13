@@ -4,7 +4,7 @@
 A federation worker is an ordinary SPP client, not a relay and not a special
 relay-to-relay protocol. It reads assertions from a *source* relay over the
 frozen public interface, independently revalidates every one of them with the
-`impl-a` verifier, and submits the valid ones to a *destination* relay where
+Python reference verifier, and submits the valid ones to a *destination* relay where
 local policy decides acceptance.
 
 It never:

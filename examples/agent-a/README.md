@@ -3,7 +3,7 @@
 An acting SPP v1 client, **not** a relay. It owns an Ed25519 identity and a
 content-addressed object store, mines and signs pointer assertions, submits
 them to a relay, polls a capability channel, independently validates every
-received assertion with the frozen `impl-a` verifier, fetches referenced
+received assertion with the frozen Python reference verifier, fetches referenced
 objects from their locators, and accepts payloads only after the `§23` SHA-256
 check.
 
@@ -82,7 +82,7 @@ server is local. It performs no other reachability filtering.
 
 `mine()` searches the nonce space by patching the decimal nonce digits into a
 canonical JCS template, computing one work target per nonce digit width. It
-then puts the finished envelope through the frozen `impl-a` verifier, so the
+then puts the finished envelope through the frozen Python reference verifier, so the
 producer optimisation can never emit a non-valid assertion.
 
 ## Transport and User-Agent

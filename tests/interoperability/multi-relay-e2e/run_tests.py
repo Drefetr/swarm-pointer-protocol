@@ -10,7 +10,7 @@ the ordinary frozen v1 public client interface (GET + POST).
 The harness only orchestrates processes and inspects them over HTTP. It never
 mines, signs, submits, polls, or dereferences a locator on an agent's behalf;
 every protocol action is a separate CLI invocation. Served assertions are
-independently revalidated here against the frozen `impl-a` v1 profile.
+independently revalidated here against the frozen Python reference v1 profile.
 
 Usage:
     python tests/interoperability/multi-relay-e2e/run_tests.py [--keep]

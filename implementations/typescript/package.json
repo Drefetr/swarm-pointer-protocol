@@ -2,7 +2,7 @@
   "name": "spp-impl-b",
   "private": true,
   "type": "module",
-  "description": "Independent TypeScript SPP v1-rc1 verifier. Do not import impl-a or tools/.",
+  "description": "Independent TypeScript SPP v1 verifier. Do not import the Python reference implementation or tools/.",
   "scripts": {
     "verify": "tsx src/cli.ts"
   },

@@ -4,7 +4,7 @@ A small persistent HTTP relay implementing the frozen SPP v1
 [`§27`/`§28`](../../spec/SPP-v1-Core-Protocol-Specification.md) profile.
 
 It is a **relay**, not an application server. It receives signed assertions,
-completes the full frozen `§20` validation with the `impl-a` verifier, applies
+completes the full frozen `§20` validation with the Python reference verifier, applies
 local policy, persists the canonical signed bytes, indexes them, and serves the
 frozen HTTP routes. It never fetches, hosts, or interprets referenced content:
 `ref.locators[]` and `descriptor.locators[]` are opaque signed strings.

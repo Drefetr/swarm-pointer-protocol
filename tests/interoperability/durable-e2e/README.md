@@ -80,7 +80,7 @@ The harness only starts processes and inspects the relay and object servers. It
 never mines, signs, submits, polls, or dereferences a locator on the agents'
 behalf; all protocol actions are separate `examples/agent-a` and
 `examples/agent-b` CLI invocations. Served assertions are independently
-revalidated against the frozen `impl-a` v1 profile for the assertion-level
+revalidated against the frozen Python reference v1 profile for the assertion-level
 checks.
 
 ```text

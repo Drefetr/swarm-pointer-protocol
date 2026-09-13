@@ -1,4 +1,4 @@
-"""Run impl-a and impl-b against the same suite. Any disagreement is a freeze blocker."""
+"""Run the Python and TypeScript implementations against the same suite. Any disagreement is a freeze blocker."""
 
 from __future__ import annotations
 
