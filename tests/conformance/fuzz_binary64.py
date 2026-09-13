@@ -25,7 +25,7 @@ import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent.parent
-TSX = ROOT / "implementations" / "typescript" / "node_modules" / ".bin" / "tsx.cmd"
+TSX = ROOT / "implementations" / "typescript" / "node_modules" / ".bin" / ("tsx.cmd" if os.name == "nt" else "tsx")
 NODE = "node"
 REGRESSIONS_DIR = ROOT / "tests" / "conformance" / "regressions"
 

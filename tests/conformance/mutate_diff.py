@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -10,7 +11,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent.parent
 A2 = json.loads((ROOT / "tests" / "conformance" / "vectors" / "a2.json").read_text(encoding="utf-8"))
 CORPUS = ROOT / "tests" / "conformance" / "fuzz-corpus"
-TSX = ROOT / "implementations" / "typescript" / "node_modules" / ".bin" / "tsx.cmd"
+TSX = ROOT / "implementations" / "typescript" / "node_modules" / ".bin" / ("tsx.cmd" if os.name == "nt" else "tsx")
 
 
 def compact(obj) -> str:

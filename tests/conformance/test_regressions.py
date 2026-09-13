@@ -18,12 +18,13 @@ Usage:
 
 from __future__ import annotations
 
+import os
 import subprocess
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent.parent
-TSX = ROOT / "implementations" / "typescript" / "node_modules" / ".bin" / "tsx.cmd"
+TSX = ROOT / "implementations" / "typescript" / "node_modules" / ".bin" / ("tsx.cmd" if os.name == "nt" else "tsx")
 DEFAULT_DIR = ROOT / "tests" / "conformance" / "regressions"
 
 REQUIRED = (

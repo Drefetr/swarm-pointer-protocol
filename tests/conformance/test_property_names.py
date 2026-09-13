@@ -19,6 +19,7 @@ Implementation under test: impl-a (Python, in-process) and impl-b (TypeScript).
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import sys
 import tempfile
@@ -36,7 +37,7 @@ from protocol import (  # noqa: E402
     validate_bytes,
 )
 
-TSX = ROOT / "implementations" / "typescript" / "node_modules" / ".bin" / "tsx.cmd"
+TSX = ROOT / "implementations" / "typescript" / "node_modules" / ".bin" / ("tsx.cmd" if os.name == "nt" else "tsx")
 VEC = json.loads((ROOT / "tests" / "conformance" / "vectors" / "source.json").read_text(encoding="utf-8"))
 NAMES = json.loads(
     (ROOT / "tests" / "conformance" / "property-names.json").read_text(encoding="utf-8")

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -17,7 +18,7 @@ def run(cmd: list[str]) -> tuple[int, str]:
 
 def main() -> int:
     a = run([sys.executable, str(ROOT / "implementations" / "python" / "spp_verify.py"), "--suite", str(SUITE)])
-    tsx = ROOT / "implementations" / "typescript" / "node_modules" / ".bin" / "tsx.cmd"
+    tsx = ROOT / "implementations" / "typescript" / "node_modules" / ".bin" / ("tsx.cmd" if os.name == "nt" else "tsx")
     b = run([str(tsx), str(ROOT / "implementations" / "typescript" / "src" / "cli.ts"), "--suite", str(SUITE)])
     print("=== impl-a ===")
     print(a[1])

@@ -14,7 +14,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 VEC = json.loads((ROOT / "tests" / "conformance" / "vectors" / "source.json").read_text(encoding="utf-8"))
-TSX = ROOT / "implementations" / "typescript" / "node_modules" / ".bin" / "tsx.cmd"
+TSX = ROOT / "implementations" / "typescript" / "node_modules" / ".bin" / ("tsx.cmd" if os.name == "nt" else "tsx")
 A_PORT = 18770
 B_PORT = 18771
 

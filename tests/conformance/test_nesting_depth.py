@@ -31,6 +31,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -41,7 +42,7 @@ sys.path.insert(0, str(ROOT / "implementations" / "python"))
 from ed25519_spp import sign as sign_a  # noqa: E402  (cross-check only)
 from protocol import target_for_units  # noqa: E402
 
-TSX = ROOT / "implementations" / "typescript" / "node_modules" / ".bin" / "tsx.cmd"
+TSX = ROOT / "implementations" / "typescript" / "node_modules" / ".bin" / ("tsx.cmd" if os.name == "nt" else "tsx")
 TMP = Path(__file__).resolve().parent / "fuzz-corpus" / "generated"
 
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey  # noqa: E402
