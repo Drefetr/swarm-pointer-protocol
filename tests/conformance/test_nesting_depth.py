@@ -44,10 +44,6 @@ from protocol import target_for_units  # noqa: E402
 
 TSX = ROOT / "implementations" / "typescript" / "node_modules" / ".bin" / ("tsx.cmd" if os.name == "nt" else "tsx")
 TMP = Path(__file__).resolve().parent / "fuzz-corpus" / "generated"
-
-from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey  # noqa: E402
-from cryptography.hazmat.primitives.serialization import Encoding, PublicFormat  # noqa: E402
-
 TEST_SK = bytes.fromhex("9d61b19deffd5a60ba844af492ec2cc44449c5697b326919703bac031cae7f60")
 TEST_PK = bytes.fromhex("d75a980182b10ab7d54bfed3c964073a0ee172f3daa62325af021a68f707511a")
 MAXH = (1 << 256) - 1
@@ -59,16 +55,21 @@ A3_CH = SRC["A3_unlisted"]["u"]["channel"]
 A2_ID = SRC["A2_pointer"]["id"]
 A2_SIG = SRC["A2_pointer"]["sig"]
 
-_sk = Ed25519PrivateKey.from_private_bytes(TEST_SK)
-assert _sk.public_key().public_bytes(Encoding.Raw, PublicFormat.Raw) == TEST_PK
+try:
+    from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey  # noqa: E402
+    from cryptography.hazmat.primitives.serialization import Encoding, PublicFormat  # noqa: E402
 
+    _sk = Ed25519PrivateKey.from_private_bytes(TEST_SK)
+    assert _sk.public_key().public_bytes(Encoding.Raw, PublicFormat.Raw) == TEST_PK
 
-def sign_openssl(d: bytes) -> bytes:
-    return _sk.sign(b"SPP/1/assertion\x00" + d)
+    def sign_openssl(d: bytes) -> bytes:
+        return _sk.sign(b"SPP/1/assertion\x00" + d)
 
-
-if sign_openssl(bytes(32)) != sign_a(TEST_SK, bytes(32)):
-    raise SystemExit("signer cross-check failed")
+    if sign_openssl(bytes(32)) != sign_a(TEST_SK, bytes(32)):
+        raise SystemExit("signer cross-check failed")
+except ImportError:
+    def sign_openssl(d: bytes) -> bytes:
+        return sign_a(TEST_SK, d)
 
 
 def nest(d: int) -> str:
@@ -107,15 +108,18 @@ def mine(d: int) -> tuple[str, int]:
     """Smallest nonce >= 0 with H <= target. Uses a precomputed SHA-256 state
     for the (bulky) prefix; per-nonce cost is O(nonce + suffix), not O(depth)."""
     prefix, suffix = u_parts(d)
-    base = hashlib.sha256(prefix.encode("utf-8"))
+    prefix_b = prefix.encode("utf-8")
+    prefix_len = len(prefix_b)
+    base = hashlib.sha256(prefix_b)
     suffix_b = suffix.encode("utf-8")
+    suffix_len = len(suffix_b)
     nonce = 0
     while True:
         nb = str(nonce).encode("utf-8")
         h = base.copy()
         h.update(nb)
         h.update(suffix_b)
-        body_len = len(prefix.encode("utf-8")) + len(nb) + len(suffix_b)
+        body_len = prefix_len + len(nb) + suffix_len
         units = units_of_len(body_len)
         target = MAXH // (units * 65536)
         if int.from_bytes(h.digest(), "big") <= target:
@@ -125,15 +129,18 @@ def mine(d: int) -> tuple[str, int]:
 
 def unmined_above_target(d: int) -> tuple[str, str]:
     prefix, suffix = u_parts(d)
-    base = hashlib.sha256(prefix.encode("utf-8"))
+    prefix_b = prefix.encode("utf-8")
+    prefix_len = len(prefix_b)
+    base = hashlib.sha256(prefix_b)
     suffix_b = suffix.encode("utf-8")
+    suffix_len = len(suffix_b)
     nonce = 0
     while True:
         nb = str(nonce).encode("utf-8")
         h = base.copy()
         h.update(nb)
         h.update(suffix_b)
-        body_len = len(prefix.encode("utf-8")) + len(nb) + len(suffix_b)
+        body_len = prefix_len + len(nb) + suffix_len
         units = units_of_len(body_len)
         target = MAXH // (units * 65536)
         if int.from_bytes(h.digest(), "big") > target:
