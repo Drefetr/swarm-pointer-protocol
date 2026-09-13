@@ -159,6 +159,16 @@ server {
 Keep the proxy body limit at or below `SPP_MAX_RECORD_BYTES` so oversized bodies
 are rejected at the edge with an HTTP status rather than reaching the relay.
 
+### Cloudflare and other CDNs
+
+The live relay is fronted by Cloudflare. Cloudflare's browser-integrity
+heuristics can reject API clients that do not present a browser-like signature —
+for example a bare `urllib` request with the default `User-Agent`, returned as
+**Error 1010**. SPP v1 requires no particular `User-Agent`, so this is edge
+transport policy, not a protocol decision. If machine clients are rejected,
+exempt the relay host from the browser-integrity check, or have clients send a
+stable identifying `User-Agent` (see `examples/agent-a/README.md`).
+
 ## Abuse control and observability
 
 The relay itself has **no** built-in rate limiting, connection limiting, or
@@ -169,12 +179,24 @@ implementation leaves that to the deployment layer. On a public endpoint:
 - keep `SPP_MAX_RECORD_BYTES` modest (the live value is 65536);
 - raise `SPP_POW_MULTIPLIER` if bulk publishing becomes a problem;
 - block abusive actors/channels with `SPP_BLOCK_ACTOR` / `SPP_BLOCK_CHANNEL`;
-- collect access logs at the proxy (the relay does not log requests);
+- configure request logging deliberately (see below);
 - watch database growth and disk headroom; SPP provides no deletion or storage
   guarantee (§33).
 
-The relay prints little to stdout; treat the process log as startup/error
-output, not an access log.
+### Request logging
+
+Request logging is deployment-local and operator-controlled. The reference
+implementation makes no guarantee about it: it may log, may not log, and may
+change at any time. Do not rely on a particular logging behaviour, and do not
+treat the process output as either a guaranteed access log or a guaranteed
+absence of one.
+
+§10 capability channel IDs can appear in request paths, so any layer that
+records request lines — the relay process, the systemd journal, or the reverse
+proxy and any CDN in front of it — can persist the identifier. If secrecy of an
+identifier matters, configure logging at the layers you control to avoid
+capturing or to redact request paths, and account for journal/proxy retention
+alongside the storage guidance below.
 
 ## Data and backups
 
@@ -192,8 +214,19 @@ the same database file; SQLite permits one writer.
 
 ## Process management
 
-Run the relay as a supervised service so it restarts on failure and boot.
-Example `systemd` unit (adapt paths and user):
+Run the relay as a supervised service so it restarts on failure and boot. Create
+the unprivileged service account and the data directory first:
+
+```text
+sudo useradd --system --user-group --home /opt/spp --shell /usr/sbin/nologin spp
+sudo mkdir -p /var/lib/spp
+sudo chown spp:spp /var/lib/spp
+```
+
+Place this tree at `/opt/spp` (read-only to the service; adapt paths if you
+deploy elsewhere). On systemd v235+ the `mkdir`/`chown` can be replaced by
+`StateDirectory=spp`, which creates and owns the directory automatically. Example
+unit:
 
 ```ini
 [Unit]
@@ -204,12 +237,18 @@ Wants=network-online.target
 [Service]
 Type=simple
 User=spp
+Group=spp
 WorkingDirectory=/opt/spp
 Environment=SPP_MAX_RECORD_BYTES=65536
+Environment=PYTHONDONTWRITEBYTECODE=1
 ExecStart=/usr/bin/python3 implementations/relay/server.py --host 127.0.0.1 --port 18760 --db /var/lib/spp/relay.sqlite3
 Restart=on-failure
 RestartSec=2
 NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ReadWritePaths=/var/lib/spp
 
 [Install]
 WantedBy=multi-user.target
