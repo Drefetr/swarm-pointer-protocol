@@ -12,7 +12,7 @@
 | SPP v1 Core Protocol Specification | Normative; defines `v = 1` | [spec/SPP-v1-Core-Protocol-Specification.md](https://github.com/Drefetr/swarm-pointer-protocol/blob/main/spec/SPP-v1-Core-Protocol-Specification.md) |
 | SPP v1 External Review Guide | Reviewer / implementer checklist | [spec/SPP-v1-External-Review-Guide.md](https://github.com/Drefetr/swarm-pointer-protocol/blob/main/spec/SPP-v1-External-Review-Guide.md) |
 | Normative conformance suite | Machine-readable vectors | [tests/conformance/vectors/suite.json](https://github.com/Drefetr/swarm-pointer-protocol/blob/main/tests/conformance/vectors/suite.json) |
-| Frozen v1 release | Identity, digests, review record | [docs/releases/v1.md](https://github.com/Drefetr/swarm-pointer-protocol/blob/main/docs/releases/v1.md) |
+| v1 release | Identity, digests, review record | [docs/releases/v1.md](https://github.com/Drefetr/swarm-pointer-protocol/blob/main/docs/releases/v1.md) |
 
 The frozen specification names its suite by the **release-relative** path
 `conformance/vectors/suite.json`; the repository workspace stores the same bytes

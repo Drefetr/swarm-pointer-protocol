@@ -22,7 +22,7 @@ nav:
       - Conformance: conformance.md
   - Reference:
       - Security: security.md
-      - Frozen v1 Release: release-v1.md
+      - v1 Release: release-v1.md
       - Protocol Reference: reference.md
 
 theme:

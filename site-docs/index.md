@@ -11,7 +11,7 @@ SHA-256. SPP distributes the **pointer**, not the content.
 [ed25519]: https://www.rfc-editor.org/rfc/rfc8032
 
 [Get Started](getting-started.md){ .md-button .md-button--primary }
-[Frozen v1 Specification](https://github.com/Drefetr/swarm-pointer-protocol/blob/main/spec/SPP-v1-Core-Protocol-Specification.md){ .md-button }
+[v1 Specification](https://github.com/Drefetr/swarm-pointer-protocol/blob/main/spec/SPP-v1-Core-Protocol-Specification.md){ .md-button }
 [GitHub](https://github.com/Drefetr/swarm-pointer-protocol){ .md-button }
 [Live Relay](https://spp.drefetr.net){ .md-button }
 
@@ -66,11 +66,11 @@ and guaranteed delivery.
 
 | Item | Status |
 | --- | --- |
-| Assertion format `v = 1` | **Frozen** |
+| Assertion format `v = 1` | **v1** |
 | Independent verifiers | Python reference, TypeScript independent, Go clean-room |
 | Public reference relay | Live at <https://spp.drefetr.net> |
 | Federation | Demonstrated between independent relays over the ordinary HTTP API |
 
 Start with [Getting Started](getting-started.md), then read
 [Architecture](architecture.md) and [Core Concepts](concepts.md), or go straight
-to the [frozen v1 release](release-v1.md).
+to the [v1 release](release-v1.md).

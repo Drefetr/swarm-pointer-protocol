@@ -1,6 +1,6 @@
-# Frozen v1 Release
+# v1 Release
 
-!!! danger "SPP v1 is FROZEN"
+!!! danger "SPP v1"
     The `v = 1` objective-validity profile is immutable. Any change that alters
     the set of protocol-valid assertions, assertion identity, signature input,
     proof-of-work, protocol maxima, permitted types, or required/prohibited
@@ -17,7 +17,7 @@ That file is the source; this page summarizes it.
 | Item | Value |
 | --- | --- |
 | Tag | `v1` |
-| Assertion format | `v = 1` (frozen) |
+| Assertion format | `v = 1` |
 | Specification SHA-256 | `4c450df9cafdd42c746537a72f6bd88d5dbf86390d6e7e51314b3a0134a71019` |
 | Review guide SHA-256 | `6335bd8c8d94cbe5b39ef35329c761b735330a321f45f0ec67c5319e7f82683c` |
 | Normative suite SHA-256 | `649a58da077818ab34a2ade7ea6b6a87ed4b05222cdeaaeae7fecb5e594493e3` |
@@ -66,8 +66,7 @@ The script verifies the frozen file digests, stages the package, writes
 `MANIFEST.sha256`, and produces a deterministic `dist/v1.zip` plus its
 `.sha256`.
 
-!!! note "Frozen profile vs platform immutability"
-    "Frozen" here means the protocol profile is **content-addressed and pinned**
-    by the digests above. This is distinct from GitHub's platform-level
-    "immutable releases" feature; the protocol's immutability does not depend on
-    that setting being enabled.
+!!! note "v1 profile vs platform immutability"
+    The v1 profile is **content-addressed and pinned** by the digests above. This
+    is distinct from GitHub's platform-level "immutable releases" feature; the
+    protocol's immutability does not depend on that setting being enabled.

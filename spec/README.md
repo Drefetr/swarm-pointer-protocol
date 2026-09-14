@@ -1,8 +1,8 @@
-# spec — frozen v1 normative package
+# spec — v1 normative package
 
 This directory holds the frozen Swarm Pointer Protocol v1 package:
 
-- [`SPP-v1-Core-Protocol-Specification.md`](SPP-v1-Core-Protocol-Specification.md) — the normative specification (assertion format `v = 1`, **FROZEN**).
+- [`SPP-v1-Core-Protocol-Specification.md`](SPP-v1-Core-Protocol-Specification.md) — the normative specification (assertion format `v = 1`).
 - [`SPP-v1-External-Review-Guide.md`](SPP-v1-External-Review-Guide.md) — the reviewer / implementer checklist.
 
 Both documents are intentionally byte-stable. This `README.md` is
