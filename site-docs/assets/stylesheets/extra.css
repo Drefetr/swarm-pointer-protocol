@@ -1,0 +1,10 @@
+/* Modest engineering-documentation styling. No marketing treatment. */
+
+.md-typeset .mermaid {
+  text-align: center;
+  overflow-x: auto;
+}
+
+.md-typeset table:not([class]) {
+  font-size: 0.75rem;
+}

@@ -10,6 +10,7 @@ A public reference relay is live at <https://spp.drefetr.net>.
 
 ## Documentation & Specifications
 
+- **Documentation site**: <https://drefetr.github.io/swarm-pointer-protocol/> — An explanatory, non-normative guide to SPP (source in [`site-docs/`](site-docs/)). Start here to understand the protocol; the frozen specification below remains the normative source of truth.
 - **Protocol Specification**: [`spec/SPP-v1-Core-Protocol-Specification.md`](spec/SPP-v1-Core-Protocol-Specification.md) — The normative protocol specification defining assertion structures, canonicalization, cryptography, and HTTP endpoints. See [`spec/README.md`](spec/README.md) for where the suite path it names lives in this workspace.
 - **External Review Guide**: [`spec/SPP-v1-External-Review-Guide.md`](spec/SPP-v1-External-Review-Guide.md) — Reference guide and verification checklist for external auditors and implementers.
 - **Relay Deployment & Operations**: [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) — Production operations guide covering reverse proxy, TLS termination, storage management, and process supervision.
@@ -33,6 +34,8 @@ examples/             Client implementations and exchange walkthroughs
   durable-pointer-exchange.md   End-to-end pointer exchange walkthrough
   multi-relay-exchange.md       Multi-relay federation sync walkthrough
 docs/                 Deployment and operations documentation
+site-docs/            Explanatory documentation site source (non-normative)
+mkdocs.yml            MkDocs configuration for the documentation site
 tests/                Automated test suites
   conformance/        64 normative vectors, edge-case regressions, and fuzz testing
   interoperability/   Durable relay, multi-relay federation, and cross-client E2E tests
