@@ -104,15 +104,26 @@ enforce — the manifest reports `pow_multiplier`.
 
 The relay advertises the full §27 `policy` set — `pow_multiplier`,
 `max_record_bytes`, `max_locators`, `max_locator_bytes`, and `max_parents`
-(defaults are the v1 maxima from §5) — and always returns
-`"bootstrap_channels": []`. A fresh client therefore has no advertised channel
-to discover; capability channels are reachable only with the channel id in hand
-(§29). If this deployment should publish a bootstrap channel, add it to the
-manifest and its test together.
+(defaults are the v1 maxima from §5) — and `bootstrap_channels` from its
+optional configuration file (default `[]`). A fresh client with no configured
+seed therefore has no advertised channel to discover; capability channels are
+reachable only with the channel id in hand (§29).
 
-The live instance currently reports only `pow_multiplier` and
-`max_record_bytes`; it will advertise the full policy set after the next
-redeploy of this tree.
+To publish a seed channel, set `bootstrap_channels` in a relay configuration
+file passed with `--config`:
+
+```json
+{
+  "bootstrap_channels": ["sha256:<64hex>"]
+}
+```
+
+See `implementations/relay/relay.config.example.json`. The manifest is public,
+so a bootstrap entry should be an advertised seed channel rather than a
+capability channel, and some relay must carry the channel's assertions for the
+hint to lead anywhere. The live instance currently reports only
+`pow_multiplier` and `max_record_bytes`; it will advertise the full policy set
+after the next redeploy of this tree.
 
 ## TLS and reverse proxy
 

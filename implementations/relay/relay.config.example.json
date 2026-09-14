@@ -1,0 +1,6 @@
+{
+  "_comment": "Example SPP v1 durable relay configuration. Pass with --config. Unknown keys are rejected. bootstrap_channels is served verbatim in the /.well-known/spp discovery manifest; replace the placeholder below with the sha256:<64hex> id of a channel this relay carries. A bootstrap entry is a public discovery hint, so use an advertised seed channel rather than a capability channel.",
+  "bootstrap_channels": [
+    "sha256:0000058da39af8f5e2cb8c1268b45e6f198320a5e5ac53512f4b707e8672986b"
+  ]
+}

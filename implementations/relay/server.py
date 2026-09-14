@@ -40,6 +40,7 @@ from protocol import (  # noqa: E402
 MAX_H = (1 << 256) - 1
 UNIT_SCALE = 65536
 HEX64_RE = re.compile(r"^[0-9a-f]{64}$")
+SHA256_ID_RE = re.compile(r"^sha256:[0-9a-f]{64}$")
 
 # v1 protocol maxima (§5). Local policy limits are clamped to these.
 PROTO_MAX_LOCATORS = 256
@@ -60,6 +61,7 @@ class Config:
     max_parents: int = PROTO_MAX_PARENTS
     block_actor: str = ""
     block_channel: str = ""
+    bootstrap_channels: tuple[str, ...] = ()
 
 
 def local_work_ok(ident: str, units: int, multiplier: int) -> bool:
@@ -122,7 +124,7 @@ class Handler(BaseHTTPRequestHandler):
                     "assertion": "/v1/assertions/sha256/{hex}",
                     "channel": "/v1/channels/sha256/{hex}/assertions",
                     "object": "/v1/objects/sha256/{hex}/assertions",
-                    "bootstrap_channels": [],
+                    "bootstrap_channels": list(self.cfg.bootstrap_channels),
                     "policy": {
                         "pow_multiplier": self.cfg.pow_multiplier,
                         "max_record_bytes": self.cfg.max_record_bytes,
@@ -232,6 +234,56 @@ class Relay(ThreadingHTTPServer):
     allow_reuse_address = True
 
 
+class ConfigError(Exception):
+    pass
+
+
+def _pairs_no_duplicates(pairs):
+    out = {}
+    for key, value in pairs:
+        if key in out:
+            raise ConfigError(f"duplicate config key: {key}")
+        out[key] = value
+    return out
+
+
+def load_config_file(path: str) -> dict:
+    """Load and validate the optional relay configuration file.
+
+    The file is a JSON object. Unknown keys are rejected so that typos fail at
+    startup rather than being silently ignored. The only defined key is
+    ``bootstrap_channels``, a list of ``sha256:<64hex>`` identifiers served
+    verbatim in the §27 discovery manifest.
+    """
+    try:
+        raw = Path(path).read_text(encoding="utf-8")
+    except OSError as e:
+        raise ConfigError(f"cannot read config {path}: {e}") from e
+    try:
+        data = json.loads(raw, object_pairs_hook=_pairs_no_duplicates)
+    except json.JSONDecodeError as e:
+        raise ConfigError(f"config {path} is not valid JSON: {e}") from e
+    if not isinstance(data, dict):
+        raise ConfigError("config root must be a JSON object")
+    allowed = {"bootstrap_channels", "_comment"}
+    unknown = sorted(set(data) - allowed)
+    if unknown:
+        raise ConfigError("unknown config key(s): " + ", ".join(unknown))
+    if "_comment" in data and not isinstance(data["_comment"], str):
+        raise ConfigError("_comment must be a string")
+    channels = data.get("bootstrap_channels", [])
+    if not isinstance(channels, list):
+        raise ConfigError("bootstrap_channels must be an array of sha256:<64hex> identifiers")
+    seen: set[str] = set()
+    for index, channel in enumerate(channels):
+        if not isinstance(channel, str) or not SHA256_ID_RE.fullmatch(channel):
+            raise ConfigError(f"bootstrap_channels[{index}] is not a sha256:<64hex> identifier")
+        if channel in seen:
+            raise ConfigError(f"duplicate bootstrap channel: {channel}")
+        seen.add(channel)
+    return {"bootstrap_channels": tuple(channels)}
+
+
 def local_limit(env: dict, name: str, proto_max: int) -> int:
     return max(0, min(int(env.get(name, str(proto_max))), proto_max))
 
@@ -243,7 +295,14 @@ def build_config(argv: list[str] | None = None) -> Config:
     ap.add_argument("--port", type=int, default=int(env.get("SPP_PORT", "18760")))
     ap.add_argument("--db", default=env.get("SPP_DB", "./relay.sqlite3"))
     ap.add_argument("--page-size", type=int, default=int(env.get("SPP_PAGE_SIZE", "32")))
+    ap.add_argument("--config", default=None, metavar="PATH", help="optional JSON relay configuration file")
     args = ap.parse_args(argv)
+    bootstrap_channels: tuple[str, ...] = ()
+    if args.config:
+        try:
+            bootstrap_channels = load_config_file(args.config)["bootstrap_channels"]
+        except ConfigError as e:
+            raise SystemExit(f"spp-relay: {e}")
     return Config(
         host=args.host,
         port=args.port,
@@ -256,6 +315,7 @@ def build_config(argv: list[str] | None = None) -> Config:
         max_parents=local_limit(env, "SPP_MAX_PARENTS", PROTO_MAX_PARENTS),
         block_actor=env.get("SPP_BLOCK_ACTOR", ""),
         block_channel=env.get("SPP_BLOCK_CHANNEL", ""),
+        bootstrap_channels=bootstrap_channels,
     )
 
 

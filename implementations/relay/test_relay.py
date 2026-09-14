@@ -45,7 +45,8 @@ MAIN_PORT = 18820
 POW_PORT = 18821
 CONC_PORT = 18822
 LIMIT_PORT = 18823
-ALL_PORTS = (MAIN_PORT, POW_PORT, CONC_PORT, LIMIT_PORT)
+BOOT_PORT = 18824
+ALL_PORTS = (MAIN_PORT, POW_PORT, CONC_PORT, LIMIT_PORT, BOOT_PORT)
 
 TMP = Path(tempfile.mkdtemp(prefix="spp-relay-test-"))
 MAIN_DB = TMP / "main.sqlite3"
@@ -135,13 +136,22 @@ def sweep_ports() -> None:
                     pass
 
 
-def start(db: Path, port: int, page_size: int = 1, extra_env: dict | None = None) -> subprocess.Popen:
+def start(
+    db: Path,
+    port: int,
+    page_size: int = 1,
+    extra_env: dict | None = None,
+    extra_args: list | None = None,
+) -> subprocess.Popen:
     env = os.environ.copy()
     env["SPP_PAGE_SIZE"] = str(page_size)
     if extra_env:
         env.update(extra_env)
+    cmd = [sys.executable, str(SERVER), "--port", str(port), "--db", str(db), "--page-size", str(page_size)]
+    if extra_args:
+        cmd += list(extra_args)
     p = subprocess.Popen(
-        [sys.executable, str(SERVER), "--port", str(port), "--db", str(db), "--page-size", str(page_size)],
+        cmd,
         cwd=ROOT,
         env=env,
         stdout=subprocess.DEVNULL,
@@ -149,6 +159,22 @@ def start(db: Path, port: int, page_size: int = 1, extra_env: dict | None = None
     )
     wait(port)
     return p
+
+
+def config_rejected(payload: str, name: str) -> None:
+    cfg = TMP / f"bad-{name}.json"
+    cfg.write_text(payload, encoding="utf-8")
+    db = TMP / f"bad-{name}.sqlite3"
+    try:
+        r = subprocess.run(
+            [sys.executable, str(SERVER), "--port", str(BOOT_PORT), "--db", str(db), "--config", str(cfg)],
+            cwd=ROOT,
+            capture_output=True,
+            timeout=15,
+        )
+    except subprocess.TimeoutExpired:
+        raise AssertionError(f"{name}: relay served despite invalid config")
+    check(r.returncode != 0, f"{name}: expected nonzero exit, got {r.returncode}")
 
 
 def all_items(port: int, path: str) -> list:
@@ -327,6 +353,35 @@ def run() -> int:
         finally:
             stop(p)
 
+    def bootstrap_channels_config():
+        # Use the shipped example file so it cannot silently drift out of schema.
+        example = ROOT / "implementations" / "relay" / "relay.config.example.json"
+        expected = json.loads(example.read_text(encoding="utf-8"))["bootstrap_channels"]
+        check(expected, "example config has no bootstrap channels")
+        db = TMP / "boot.sqlite3"
+        p = start(db, BOOT_PORT, page_size=2, extra_args=["--config", str(example)])
+        try:
+            code, man = get_json(BOOT_PORT, "/.well-known/spp")
+            check(code == 200, f"manifest -> {code}")
+            check(man["bootstrap_channels"] == expected, man)
+            check(man["policy"]["max_locators"] == 256, man)
+        finally:
+            stop(p)
+
+    def invalid_config_rejected():
+        # Unknown keys, wrong shapes, malformed and duplicate ids must fail at
+        # startup rather than being silently ignored.
+        config_rejected('{"bootstrap_channels": "sha256:aa"}', "not-list")
+        config_rejected('{"bootstrap_channels": ["sha256:00"]}', "short-id")
+        config_rejected('{"bootstrap_channels": [1]}', "not-string")
+        config_rejected(
+            '{"bootstrap_channels": ["sha256:' + "a" * 64 + '", "sha256:' + "a" * 64 + '"]}',
+            "duplicate",
+        )
+        config_rejected('{"unknown_key": 1}', "unknown-key")
+        config_rejected("[]", "non-object")
+        config_rejected('{"bootstrap_channels": [],}', "trailing-comma")
+
     def serve_revalidate_invariant():
         for port, path in (
             (MAIN_PORT, f"/v1/channels/sha256/{a1_hex}/assertions"),
@@ -420,6 +475,8 @@ def run() -> int:
         ("malformed-cursor", malformed_cursor),
         ("local-pow-multiplier", local_pow_multiplier),
         ("local-locator-limit", local_locator_limit),
+        ("bootstrap-channels-config", bootstrap_channels_config),
+        ("invalid-config-rejected", invalid_config_rejected),
         ("serve-revalidate-invariant", serve_revalidate_invariant),
         ("concurrent-submissions", concurrent_submissions),
         ("restart-persistence", restart_persistence),

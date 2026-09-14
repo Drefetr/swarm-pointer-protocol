@@ -20,6 +20,7 @@ implementations/relay/
     server.py       HTTP profile, admission, local policy
     store.py        SQLite persistence and cursor pagination
     schema.sql      storage schema and indexes
+    relay.config.example.json   example --config file (bootstrap_channels)
     test_relay.py   durable-relay acceptance tests
     federation/     ordinary-client federation sync worker
 ```
@@ -54,6 +55,7 @@ CLI options:
 --port          TCP port                     default 18760       (env SPP_PORT)
 --db            SQLite database path         default ./relay.sqlite3 (env SPP_DB)
 --page-size     list page size               default 32          (env SPP_PAGE_SIZE)
+--config        JSON configuration file      optional
 ```
 
 Local policy environment variables:
@@ -67,6 +69,34 @@ SPP_MAX_PARENTS         parents per pointer                     default 1024 (v1
 SPP_BLOCK_ACTOR         reject this actor id, if set            default unset
 SPP_BLOCK_CHANNEL       reject this channel id, if set          default unset
 ```
+
+### Configuration file
+
+An optional JSON configuration file is passed with `--config <path>`. The
+current schema defines `bootstrap_channels`, a list of `sha256:<64hex>`
+identifiers served verbatim in the §27 discovery manifest:
+
+```json
+{
+  "bootstrap_channels": ["sha256:<64hex>"]
+}
+```
+
+The file is validated at startup: the root must be an object, unknown keys are
+rejected, and every entry must be a well-formed `sha256:` identifier without
+duplicates, so a typo fails fast rather than being silently ignored. An optional
+top-level `_comment` string is allowed and ignored. See
+[`relay.config.example.json`](relay.config.example.json).
+
+```text
+python implementations/relay/server.py --config relay.config.example.json
+```
+
+`bootstrap_channels` is a discovery hint, not a validity rule: the relay does
+not need to carry the channel for the manifest to list it, but a fresh client
+that follows the hint only finds assertions if some relay carries them. The
+manifest is public, so prefer an advertised seed channel over a capability
+channel.
 
 The three locator/parent limits are local policy clamped to the v1 maxima (§5).
 The discovery manifest `policy` object reports all five numeric limits.

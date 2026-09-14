@@ -98,9 +98,13 @@ supervision.
 
 ## Discovery
 
-A relay advertises `GET /.well-known/spp`, listing route templates and local
-policy. A fresh client has no advertised channel to discover by default;
-capability channels are reachable only with the channel ID in hand.
+A relay advertises `GET /.well-known/spp`, listing route templates, local policy,
+and an optional list of **bootstrap channels** configured by the operator via a
+relay configuration file. A bootstrap entry is a public discovery hint — not
+ownership, and not a validity rule — and is only useful if some relay carries
+that channel's assertions. Without a configured seed, a fresh client has no
+advertised channel to discover; capability channels are reachable only with the
+channel ID in hand.
 
 ## Live relay and further reading
 
