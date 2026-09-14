@@ -46,7 +46,8 @@ POW_PORT = 18821
 CONC_PORT = 18822
 LIMIT_PORT = 18823
 BOOT_PORT = 18824
-ALL_PORTS = (MAIN_PORT, POW_PORT, CONC_PORT, LIMIT_PORT, BOOT_PORT)
+FLAT_PORT = 18825
+ALL_PORTS = (MAIN_PORT, POW_PORT, CONC_PORT, LIMIT_PORT, BOOT_PORT, FLAT_PORT)
 
 TMP = Path(tempfile.mkdtemp(prefix="spp-relay-test-"))
 MAIN_DB = TMP / "main.sqlite3"
@@ -382,6 +383,36 @@ def run() -> int:
         config_rejected("[]", "non-object")
         config_rejected('{"bootstrap_channels": [],}', "trailing-comma")
 
+    def flat_layout_startup():
+        # A deployment that keeps the relay beside a sibling python/ directory
+        # must still start: the relay locates its verifier modules relative to
+        # itself, not to the caller's working directory.
+        flat = TMP / "flat"
+        relay_dir = flat / "relay"
+        py_dir = flat / "python"
+        relay_dir.mkdir(parents=True)
+        py_dir.mkdir(parents=True)
+        for name in ("server.py", "store.py", "schema.sql"):
+            shutil.copy(HERE / name, relay_dir / name)
+        for name in ("jcs.py", "json_input.py", "protocol.py", "ed25519_spp.py"):
+            shutil.copy(ROOT / "implementations" / "python" / name, py_dir / name)
+        example = ROOT / "implementations" / "relay" / "relay.config.example.json"
+        db = TMP / "flat.sqlite3"
+        p = subprocess.Popen(
+            [sys.executable, str(relay_dir / "server.py"), "--port", str(FLAT_PORT),
+             "--db", str(db), "--config", str(example)],
+            cwd=flat,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        )
+        try:
+            wait(FLAT_PORT)
+            code, man = get_json(FLAT_PORT, "/.well-known/spp")
+            check(code == 200, f"manifest -> {code}")
+            check(man["bootstrap_channels"], man)
+        finally:
+            stop(p)
+
     def serve_revalidate_invariant():
         for port, path in (
             (MAIN_PORT, f"/v1/channels/sha256/{a1_hex}/assertions"),
@@ -477,6 +508,7 @@ def run() -> int:
         ("local-locator-limit", local_locator_limit),
         ("bootstrap-channels-config", bootstrap_channels_config),
         ("invalid-config-rejected", invalid_config_rejected),
+        ("flat-layout-startup", flat_layout_startup),
         ("serve-revalidate-invariant", serve_revalidate_invariant),
         ("concurrent-submissions", concurrent_submissions),
         ("restart-persistence", restart_persistence),

@@ -1,0 +1,43 @@
+# SPP v1 durable relay — systemd unit template.
+#
+# `deploy/install.sh` substitutes the install-root placeholder with the install
+# directory and installs this as /etc/systemd/system/spp-relay.service. To
+# install by hand, replace both placeholder occurrences and copy to
+# /etc/systemd/system/.
+#
+# See docs/DEPLOYMENT.md for the surrounding environment (TLS, reverse proxy,
+# backups, local policy).
+
+[Unit]
+Description=Swarm Pointer Protocol v1 relay
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=spp
+Group=spp
+WorkingDirectory=__SPP_ROOT__
+
+Environment=PYTHONUNBUFFERED=1
+Environment=SPP_POW_MULTIPLIER=1
+Environment=SPP_MAX_RECORD_BYTES=65536
+Environment=SPP_PAGE_SIZE=100
+
+ExecStart=/usr/bin/python3 __SPP_ROOT__/implementations/relay/server.py \
+    --host 127.0.0.1 \
+    --port 18760 \
+    --db /var/lib/spp/relay.sqlite3 \
+    --config /etc/spp/relay.conf.json
+
+Restart=on-failure
+RestartSec=2
+
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/spp
+
+[Install]
+WantedBy=multi-user.target

@@ -16,7 +16,8 @@ https://spp.drefetr.net
 ```
 
 It is an ordinary frozen v1 relay: the process is `implementations/relay/server.py` with the
-default local policy. Observed discovery manifest (2026-09-13):
+default local policy and one configured bootstrap channel. Observed discovery
+manifest (2026-09-14):
 
 ```json
 {
@@ -26,13 +27,23 @@ default local policy. Observed discovery manifest (2026-09-13):
   "assertion": "/v1/assertions/sha256/{hex}",
   "channel": "/v1/channels/sha256/{hex}/assertions",
   "object": "/v1/objects/sha256/{hex}/assertions",
-  "bootstrap_channels": [],
+  "bootstrap_channels": [
+    "sha256:00000a3d6190118e7f764ad792bf0dbc50a25a25592e6287b0067141f974f839"
+  ],
   "policy": {
     "pow_multiplier": 1,
-    "max_record_bytes": 65536
+    "max_record_bytes": 65536,
+    "max_locators": 256,
+    "max_locator_bytes": 8192,
+    "max_parents": 1024
   }
 }
 ```
+
+The bootstrap channel is an advertised seed: a channel-description assertion
+whose `descriptor` locators point at the project repository, plus a pointer to
+the same object. It is a discovery hint only — not ownership, and not a validity
+rule.
 
 Confirm it from any host:
 
@@ -121,9 +132,8 @@ file passed with `--config`:
 See `implementations/relay/relay.config.example.json`. The manifest is public,
 so a bootstrap entry should be an advertised seed channel rather than a
 capability channel, and some relay must carry the channel's assertions for the
-hint to lead anywhere. The live instance currently reports only
-`pow_multiplier` and `max_record_bytes`; it will advertise the full policy set
-after the next redeploy of this tree.
+hint to lead anywhere. The live instance advertises the full policy set and the
+seed channel above.
 
 ## TLS and reverse proxy
 
@@ -225,19 +235,25 @@ the same database file; SQLite permits one writer.
 
 ## Process management
 
-Run the relay as a supervised service so it restarts on failure and boot. Create
-the unprivileged service account and the data directory first:
+Run the relay as a supervised service so it restarts on failure and boot. The
+repository ships a systemd unit template
+([`deploy/spp-relay.service`](../deploy/spp-relay.service)) and an installer
+([`deploy/install.sh`](../deploy/install.sh)) that creates the `spp` user,
+clones the tree, writes a starter config at `/etc/spp/relay.conf.json`, installs
+the unit, and starts the relay:
 
 ```text
-sudo useradd --system --user-group --home /opt/spp --shell /usr/sbin/nologin spp
-sudo mkdir -p /var/lib/spp
-sudo chown spp:spp /var/lib/spp
+sudo bash deploy/install.sh
+# custom repo URL and install root:
+sudo bash deploy/install.sh https://github.com/Drefetr/swarm-pointer-protocol /opt/spp
 ```
 
-Place this tree at `/opt/spp` (read-only to the service; adapt paths if you
-deploy elsewhere). On systemd v235+ the `mkdir`/`chown` can be replaced by
-`StateDirectory=spp`, which creates and owns the directory automatically. Example
-unit:
+Re-running the installer updates the tree in place (`git pull`) and restarts the
+service; it never touches the database. To install by hand, create the account
+and data directory, place the tree at a fixed path, substitute the install-root
+placeholder in the template, and copy it to
+`/etc/systemd/system/spp-relay.service`. The unit uses an absolute `ExecStart`
+and passes `--config`:
 
 ```ini
 [Unit]
@@ -252,7 +268,11 @@ Group=spp
 WorkingDirectory=/opt/spp
 Environment=SPP_MAX_RECORD_BYTES=65536
 Environment=PYTHONDONTWRITEBYTECODE=1
-ExecStart=/usr/bin/python3 implementations/relay/server.py --host 127.0.0.1 --port 18760 --db /var/lib/spp/relay.sqlite3
+ExecStart=/usr/bin/python3 /opt/spp/implementations/relay/server.py \
+    --host 127.0.0.1 \
+    --port 18760 \
+    --db /var/lib/spp/relay.sqlite3 \
+    --config /etc/spp/relay.conf.json
 Restart=on-failure
 RestartSec=2
 NoNewPrivileges=true
@@ -264,6 +284,8 @@ ReadWritePaths=/var/lib/spp
 [Install]
 WantedBy=multi-user.target
 ```
+
+After editing a unit, run `systemctl daemon-reload` before restarting.
 
 ## Health and verification
 

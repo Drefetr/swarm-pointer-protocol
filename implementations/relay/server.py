@@ -23,19 +23,54 @@ from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
 HERE = Path(__file__).resolve().parent
-ROOT = HERE.parents[1]
-sys.path.insert(0, str(HERE))
-sys.path.insert(0, str(ROOT / "implementations" / "python"))
 
-from store import BadCursor, Store, decode_cursor  # noqa: E402
-from jcs import canonicalize_bytes  # noqa: E402
-from protocol import (  # noqa: E402
-    SppError,
-    UnsupportedError,
-    parse_object,
-    reconstruct_u,
-    validate_bytes,
-)
+
+def _find_verifier_dir() -> Path | None:
+    """Locate the Python verifier modules (`jcs.py`, `protocol.py`).
+
+    Supports the repository layout (`implementations/python/`), a sibling
+    `python/` directory, and any ancestor containing either, so the relay can be
+    deployed as the full tree or with its modules laid out beside it.
+    """
+    candidates = [HERE, HERE.parent]
+    for base in (HERE, *HERE.parents):
+        candidates.append(base / "implementations" / "python")
+        candidates.append(base / "python")
+    seen: set[Path] = set()
+    for candidate in candidates:
+        try:
+            resolved = candidate.resolve()
+        except OSError:
+            continue
+        if resolved in seen:
+            continue
+        seen.add(resolved)
+        if (resolved / "jcs.py").is_file() and (resolved / "protocol.py").is_file():
+            return resolved
+    return None
+
+
+sys.path.insert(0, str(HERE))
+_VERIFIER_DIR = _find_verifier_dir()
+if _VERIFIER_DIR is not None:
+    sys.path.insert(0, str(_VERIFIER_DIR))
+
+try:
+    from store import BadCursor, Store, decode_cursor  # noqa: E402
+    from jcs import canonicalize_bytes  # noqa: E402
+    from protocol import (  # noqa: E402
+        SppError,
+        UnsupportedError,
+        parse_object,
+        reconstruct_u,
+        validate_bytes,
+    )
+except ModuleNotFoundError as e:
+    raise SystemExit(
+        f"spp-relay: cannot import {e.name!r}. Deploy the repository tree intact "
+        "(implementations/relay plus implementations/python), place the verifier "
+        "modules beside the relay, or add them to PYTHONPATH."
+    ) from e
 
 MAX_H = (1 << 256) - 1
 UNIT_SCALE = 65536

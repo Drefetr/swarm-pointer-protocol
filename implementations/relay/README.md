@@ -163,6 +163,18 @@ python implementations/relay/server.py --db ./relay.sqlite3
 Ids, canonical bytes, advertised channels, and all indexes survive unchanged. No
 client state is needed to rebuild the relay.
 
+## Deployment
+
+The repository ships a systemd unit template and installer under
+[`deploy/`](../../deploy/):
+
+```text
+sudo bash deploy/install.sh
+```
+
+See [`docs/DEPLOYMENT.md`](../../docs/DEPLOYMENT.md) for TLS, reverse proxy,
+backups, local policy, and the surrounding environment.
+
 ## Tests
 
 ```text

@@ -109,7 +109,9 @@ channel ID in hand.
 ## Live relay and further reading
 
 The public reference relay is live at <https://spp.drefetr.net>. It is an
-ordinary frozen v1 relay and is not authoritative over any other relay.
+ordinary frozen v1 relay and is not authoritative over any other relay. It
+advertises one bootstrap seed channel — a channel-description assertion whose
+descriptors point at the project repository — plus a pointer to the same object.
 
 - [Relay implementation README](https://github.com/Drefetr/swarm-pointer-protocol/blob/main/implementations/relay/README.md)
 - [Deployment and operations guide](https://github.com/Drefetr/swarm-pointer-protocol/blob/main/docs/DEPLOYMENT.md)
